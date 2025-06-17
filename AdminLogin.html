@@ -1,186 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Login</title>
-    <link rel="stylesheet" href="css/main.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Orbitron:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        :root {
-            --primary: #157a6e; /* Mobi-Comm primary color */
-            --secondary: #f6af65; /* Mobi-Comm secondary color */
-            --accent: #b5ffe1; /* Mobi-Comm accent color */
-        }
+      :root {
+        --primary: #157a6e;
+        --secondary: #f6af65;
+        --accent: #b5ffe1;
+      }
 
-        body {
-            background-color: #f5f6fa; /* Matches Mobi-Comm theme background */
-            font-family: 'Cabin', sans-serif;
-        }
+      body {
+        background-color: #f5f6fa;
+        font-family: "Cabin", sans-serif;
+      }
 
-        /* Header Styles (from LoginUser.html, simplified) */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: var(--primary);
-            padding: 10px 30px;
-            display: flex;
-            justify-content: center; /* Center the logo */
-            align-items: center;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: var(--primary);
+        padding: 10px 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
 
-        .navbar-brand {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--secondary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(246, 175, 101, 0.8);
-            animation: glow 2s infinite alternate;
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
+      .navbar-brand {
+        font-family: "Orbitron", sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--secondary);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 0 0 10px rgba(246, 175, 101, 0.8);
+        animation: glow 2s infinite alternate;
+        transition: transform 0.3s ease, color 0.3s ease;
+      }
 
-        @keyframes glow {
-            0% {
-                text-shadow: 0 0 10px rgba(246, 175, 101, 0.8);
-            }
-            100% {
-                text-shadow: 0 0 20px rgba(246, 175, 101, 1), 0 0 30px rgba(181, 255, 225, 0.5);
-            }
+      @keyframes glow {
+        0% {
+          text-shadow: 0 0 10px rgba(246, 175, 101, 0.8);
         }
+        100% {
+          text-shadow: 0 0 20px rgba(246, 175, 101, 1),
+            0 0 30px rgba(181, 255, 225, 0.5);
+        }
+      }
 
-        .navbar-brand:hover {
-            transform: scale(1.05);
-            color: var(--accent);
-        }
+      .navbar-brand:hover {
+        transform: scale(1.05);
+        color: var(--accent);
+      }
 
-        .navbar::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, transparent, #134732, transparent);
-            animation: shine 3s infinite linear;
-        }
+      .navbar::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, transparent, #134732, transparent);
+        animation: shine 3s infinite linear;
+      }
 
-        @keyframes shine {
-            0% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(100%);
-            }
+      @keyframes shine {
+        0% {
+          transform: translateX(-100%);
         }
+        100% {
+          transform: translateX(100%);
+        }
+      }
 
-        /* Login Container */
-        .login-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 90vh;
-            margin-top: 70px; /* Offset for fixed navbar */
-        }
+      .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+        margin-top: 70px;
+      }
 
-        .login-box {
-            display: flex;
-            background-color: white; /* Updated to white for cleaner look */
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            width: 700px;
-        }
+      .login-box {
+        display: flex;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        width: 700px;
+      }
 
-        .image-section {
-            width: 50%;
-        }
+      .image-section {
+        width: 50%;
+      }
 
-        .image-section img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+      .image-section img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
 
-        .form-section {
-            width: 50%;
-            padding: 30px;
-            text-align: center;
-        }
+      .form-section {
+        width: 50%;
+        padding: 30px;
+        text-align: center;
+      }
 
-        .form-section h2 {
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
+      .form-section h2 {
+        color: var(--primary);
+        margin-bottom: 20px;
+      }
 
-        .form-section p {
-            color: var(--primary);
-            font-weight: bold;
-        }
+      .form-section p {
+        color: var(--primary);
+        font-weight: bold;
+      }
 
-        .btn-login {
-            background-color: var(--primary);
-            color: white;
-            width: 100%;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
+      .btn-login {
+        background-color: var(--primary);
+        color: white;
+        width: 100%;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
 
-        .btn-login:hover {
-            background-color: var(--secondary);
-        }
+      .btn-login:hover {
+        background-color: var(--secondary);
+      }
 
-        /* Footer */
-        footer {
-            background-color: var(--primary);
-            color: var(--accent);
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
+      footer {
+        background-color: var(--primary);
+        color: var(--accent);
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
     </style>
-</head>
-<body>
-    <!-- Header (Mobi-Comm Logo Only) -->
+  </head>
+  <body>
+    +
     <nav class="navbar">
-        <div class="navbar-brand">Mobi-Comm</div>
+      <div class="navbar-brand">Mobi-Comm</div>
     </nav>
 
-    <!-- Login Container -->
     <div class="login-container">
-        <div class="login-box">
-            <div class="image-section">
-                <img src="Assets/Images/picture2.jpg" alt="" height="500" width="350">
-            </div>
-            <div class="form-section">
-                <h2 class="display-6 text-secondary">Welcome</h2>
-                <p>Please Enter your Details</p>
-                <form action="admin_dashboard.html" method="POST">
-                    <div class="mb-3">
-                        <p class="text-start">Enter Admin ID:</p>
-                        <input type="text" class="form-control" placeholder="ID" required>
-                    </div>
-                    <div class="mb-3">
-                        <p class="text-start">Enter password:</p>
-                        <input type="password" class="form-control" placeholder="password" required>
-                    </div>
-                    <button type="button" class="btn btn-login" onclick="location.href='AdminDashboard.html';">LOG IN</button>
-                </form>
-            </div>
+      <div class="login-box">
+        <div class="image-section">
+          <img
+            src="Assets/Images/picture2.jpg"
+            alt=""
+            height="500"
+            width="350"
+          />
         </div>
+        <div class="form-section">
+          <h2 class="display-6 text-secondary">Welcome</h2>
+          <p>Please Enter your Details</p>
+          <form id="loginForm" onsubmit="event.preventDefault(); loginAdmin();">
+            <div class="mb-3">
+              <p class="text-start">Enter Admin ID:</p>
+              <input
+                type="text"
+                class="form-control"
+                id="adminId"
+                placeholder="ID"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <p class="text-start">Enter password:</p>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="password"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-login">LOG IN</button>
+          </form>
+        </div>
+      </div>
     </div>
 
-    <!-- Footer -->
     <footer>Mobi-Comm © 2025</footer>
-</body>
+
+    <script>
+      function loginAdmin() {
+        const name = document.getElementById("adminId").value;
+        const password = document.getElementById("password").value;
+
+        fetch("http://localhost:9090/api/admin/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, password }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Login failed");
+            }
+            return response.text();
+          })
+          .then((jwt) => {
+            localStorage.setItem("jwt", jwt);
+            window.location.href = "AdminDashboard.html";
+          })
+          .catch((error) => {
+            alert("Invalid credentials");
+            console.error(error);
+          });
+      }
+    </script>
+  </body>
 </html>
