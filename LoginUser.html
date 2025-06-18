@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login Page</title>
+    <title>Login Page - Mobi-Comm</title>
     <link rel="stylesheet" href="css/main.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,34 +15,33 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <!-- For social icons -->
+
     <style>
-      /* Navbar Styles */
+      :root {
+        --primary: #157a6e;
+        --secondary: #f6af65;
+        --success: #156a6e;
+      }
+
+      /* Navbar */
       .navbar {
+        background-color: var(--primary);
+        padding: 8px 20px;
+        z-index: 1000;
         position: fixed;
         top: 0;
         width: 100%;
-        background-color: #157a6e;
-        padding: 10px 30px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 1000;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       }
-
       .navbar-brand {
         font-family: "Orbitron", sans-serif;
         font-size: 28px;
         font-weight: 700;
-        color: #ffffff;
+        color: #fff;
         text-transform: uppercase;
         letter-spacing: 2px;
         text-shadow: 0 0 10px rgba(246, 175, 101, 0.8);
         animation: glow 2s infinite alternate;
-        transition: transform 0.3s ease, color 0.3s ease;
       }
-
       @keyframes glow {
         0% {
           text-shadow: 0 0 10px rgba(246, 175, 101, 0.8);
@@ -52,26 +51,18 @@
             0 0 30px rgba(181, 255, 225, 0.5);
         }
       }
-
       .navbar-brand:hover {
         transform: scale(1.05);
-        color: #b5ffe1;
+        color: var(--secondary);
       }
-
-      .nav-links {
-        display: flex;
-        gap: 40px;
-      }
-
       .nav-links a {
-        color: #ffffff;
-        font-size: 16px;
-        font-weight: 200;
+        color: #fff;
+        font-size: 17px;
+        font-weight: 350;
         text-decoration: none;
         position: relative;
         transition: color 0.3s ease;
       }
-
       .nav-links a::after {
         content: "";
         position: absolute;
@@ -79,135 +70,133 @@
         height: 2px;
         bottom: -5px;
         left: 0;
-        background-color: #ffffff;
+        background-color: #fff;
         transition: width 0.3s ease;
       }
-
       .nav-links a:hover::after {
         width: 100%;
       }
-
       .nav-links a:hover {
-        font-weight: 400;
+        transform: scale(1.05);
       }
-
-      .nav-right {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-      }
-
+      .nav-right .search-icon,
       .nav-right .user-icon {
-        font-size: 21px;
-        color: #ffffff;
+        font-size: 20px;
+        color: #fff;
+        text-decoration: none;
+      }
+      .nav-right .search-icon:hover,
+      .nav-right .user-icon:hover {
+        transform: scale(1.05);
+        cursor: pointer;
       }
 
-      .nav-right .user-icon:hover {
-        font-size: 22px;
+      /* Dropdown Styling */
+      .dropdown-menu {
+        background-color: #fff;
+        border: none;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+      }
+
+      .dropdown-menu ul li a {
+        list-style-type: none;
+        text-decoration: none;
+      }
+
+      .dropdown-item {
+        color: #157a6e;
+        font-size: 16px;
+        padding: 5px 10px;
+      }
+      .dropdown-item:hover {
+        background-color: #f6af65;
+        color: #fff;
+        cursor: pointer;
       }
 
       /* Hero Section */
       .hero-section {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 80px;
-        padding: 30px;
+        margin-top: 70px;
+        padding: 15px;
       }
-
       .hero-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
         width: 100%;
         height: 450px;
-        background: rgb(240, 248, 244);
-        padding: 30px;
-        border-radius: 30px;
-        box-shadow: 0px 4px 10px rgba(1, 1, 1, 0.4);
         background: url("young-curly-handsome-man-pointed-side-from-hole-green-paper.jpg")
-          no-repeat center center !important;
-        background-size: cover !important;
-      }
-
-      .login-box {
-        padding: 10%;
-        margin-left: 700px;
-        background: rgb(184, 238, 238);
-        box-shadow: 10px 40px 50px rgba(245, 238, 56, 0.5);
-        height: 400px;
-      }
-
-      .form-control {
-        padding-left: 10px;
-      }
-
-      /* SIM Cards Section */
-      .sim-cards-section {
-        padding: 40px 0;
-        background: #f8f9fa; /* Light gray background similar to the image */
-      }
-
-      .sim-cards-container {
+          no-repeat center center;
+        background-size: cover;
+        box-shadow: 0 4px 10px rgba(1, 1, 1, 0.4);
+        border-radius: 15px;
         display: flex;
         justify-content: center;
-        gap: 20px;
-        flex-wrap: wrap;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .sim-card {
-        display: flex;
         align-items: center;
-        background: #ffffff;
+      }
+      .login-box {
+        background: rgba(184, 238, 238, 0.9);
+        padding: 20px;
+        border-radius: 15px;
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+      }
+      .form-control {
+        height: 50px;
+      }
+      .login-btn {
+        background-color: var(--primary);
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        width: 120px;
+        margin: 0 auto;
+        display: block;
+      }
+      .login-btn:hover {
+        background-color: var(--success);
+      }
+      /* Added for OTP Input */
+      #otpSection {
+        display: none;
+        margin-top: 15px;
+      }
+      #otpSection input {
+        margin-bottom: 10px;
+      }
+
+      /* SIM Card Section */
+      .sim-card-container {
+        background-color: rgb(184, 238, 238);
+        padding: 20px;
+        border-radius: 20px;
+        margin: 10px auto;
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        flex-wrap: wrap;  
+      }
+      .sim-card {
+        background: #fff;
         border-radius: 10px;
-        padding: 15px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        width: 350px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 100%;
+        max-width: 350px;
+        transition: 0.3s ease-in-out;
       }
-
       .sim-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       }
-
       .sim-card-icon {
-        font-size: 30px;
-        color: #157a6e; /* Teal to match your theme */
+        font-size: 25px;
+        color: #000;
         margin-right: 15px;
       }
-
-      .sim-card-content {
-        flex: 1;
-      }
-
-      .sim-card-title {
-        font-size: 18px;
-        font-weight: 600;
-        color: #333;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .sim-card-link {
-        color: #007bff; /* Blue arrow like in the image */
-        text-decoration: none;
+      .sim-card-arrow {
         font-size: 20px;
-        transition: color 0.3s ease;
-      }
-
-      .sim-card-link:hover {
-        color: #f6af65; /* Orange on hover to match your theme */
-      }
-
-      .sim-card-text {
-        font-size: 14px;
-        color: #666;
-        margin: 5px 0 0;
+        color: #004d40;
       }
 
       /* Steps Section */
@@ -215,14 +204,11 @@
         margin: 50px 0;
         text-align: center;
       }
-
       .steps-section h2 {
         font-size: 32px;
-        color: #157a6e;
-        margin-bottom: 40px;
         font-weight: 700;
+        margin-bottom: 40px;
       }
-
       .steps-container {
         display: flex;
         justify-content: center;
@@ -230,67 +216,43 @@
         flex-wrap: wrap;
         position: relative;
       }
-
       .step {
         width: 200px;
         text-align: center;
-        position: relative;
       }
-
       .step-icon {
         width: 80px;
         height: 80px;
-        background: #f6af65;
+        background: var(--secondary);
         border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 0 auto 15px;
         font-size: 36px;
-        color: #157a6e;
-        transition: transform 0.3s ease, background 0.3s ease;
+        color: var(--primary);
         animation: bounce 2s infinite;
       }
-
       .step:hover .step-icon {
         transform: scale(1.1);
         background: #bc4749;
       }
-
       .step p {
         font-size: 16px;
-        color: #157a6e;
+        color: var(--primary);
         font-weight: 500;
       }
-
       .arrow {
-        position: absolute;
-        top: 10%;
         font-size: 24px;
-        color: #f6af65;
+        color: var(--secondary);
         opacity: 0;
         animation: fadeIn 0.5s forwards;
       }
-
-      .arrow-1 {
-        left: 530px;
-        animation-delay: 0.5s;
-      }
-      .arrow-2 {
-        left: 750px;
-        animation-delay: 1s;
-      }
-      .arrow-3 {
-        left: 965px;
-        animation-delay: 1.5s;
-      }
-
       @keyframes fadeIn {
         to {
           opacity: 1;
         }
       }
-
       @keyframes bounce {
         0%,
         20%,
@@ -307,71 +269,155 @@
         }
       }
 
-      /* Rest of your styles */
-      .recharge-container {
+      /* Recommended for You Section */
+      .recommended-section {
+        margin: 50px 0;
+        padding: 0 20px;
+      }
+      .recommended-section h2 {
+        font-size: 32px;
+        font-weight: 700;
+      }
+      .recommended-container {
         display: flex;
-        justify-content: space-around;
-        align-items: right;
-        margin-top: 50px;
-        margin-left: 40px;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
       }
-      .recharge-box {
+      .recommended-card {
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 350px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+      }
+      .recommended-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      }
+      .recommended-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      .recommended-body {
         padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(243, 222, 71, 0.1);
-        width: 40%;
+        text-align: center;
       }
-      #toast-container {
-        position: fixed;
-        top: 0;
-        right: 0;
-        z-index: 1055;
-        padding: 1rem;
+      .category-label {
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .recommended-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #000;
+        margin-bottom: 10px;
+      }
+      .recommended-text {
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 20px;
+      }
+      .buy-now-btn {
+        background-color: #157a6e;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 500;
+        display: block;
+        margin: 0 auto;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+      .buy-now-btn:hover {
+        background-color: var(--success);
+        transform: translateY(-2px);
+      }
+      .Data h2 {
+        font-size: 32px;
+        font-weight: 700;
       }
 
-      button {
-        background-color: #157a6e;
+      /* Mobi-Card Section */
+      .mobi-card-section {
+        margin: 50px auto;
+        max-width: 1200px;
+      }
+      .mobi-card.mb-3 {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        border-radius: 10px;
+        padding: 30px;
+        transition: transform 0.3s ease;
+      }
+      .mobi-card.mb-3:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      }
+      .mobi-card-img {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 15px 0 0 15px;
+      }
+      .mobi-card-title {
+        font-size: 32px;
+        color: var(--secondary);
+        font-weight: 700;
+      }
+      .mobi-card-text {
+        font-size: 18px;
+        color: #000;
+        line-height: 1.6;
+      }
+      .mobi-card-list {
+        list-style: none;
+        padding: 0;
+      }
+      .mobi-card-list li {
+        font-size: 18px;
+        color: #000;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+      .mobi-card-list i {
+        color: var(--primary);
+        margin-right: 12px;
+      }
+      .explore-button {
+        background-color: var(--primary);
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 8px;
         border: none;
-        padding: 0.3rem;
-        width: 9rem;
-        border-radius: 0.5rem;
-        color: white;
-        box-shadow: 0 0.2rem #316350;
-        cursor: pointer;
-        position: relative;
-        top: -10px;
       }
-      button:active {
-        color: white;
-        box-shadow: 0 0.1rem #dfd9d9;
-        transform: translateY(0.1rem);
+      .explore-button:hover {
+        background-color: var(--success);
+        transform: translateY(-3px);
       }
-      button:hover:not(:disabled) {
-        background: #1a8b7e;
-        color: white;
-        text-shadow: 0 0.05rem #bcb4b4;
-      }
-      button:disabled {
-        cursor: auto;
-        color: grey;
-      }
+
+      /* Data Plans Section */
       .card-container {
         display: flex;
         justify-content: center;
-        gap: 50px;
+        gap: 70px;
+        flex-wrap: wrap;
+        padding: 0 20px;
       }
       .card {
-        position: relative;
-        width: 260px;
-        height: 360px;
+        width: 100%;
+        max-width: 280px;
         background-color: rgb(239, 240, 244);
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        padding: 20px;
-        gap: 10px;
+        padding: 30px;
         border-radius: 8px;
+        position: relative;
         text-align: center;
       }
       .card::before {
@@ -379,13 +425,11 @@
         position: absolute;
         inset: 0;
         left: -5px;
-        margin: auto;
-        width: 270px;
-        height: 370px;
+        width: calc(100% + 10px);
+        height: calc(100% + 10px);
         border-radius: 10px;
         background: linear-gradient(-45deg, #1ce1ff 0%, #0f4a3c 100%);
         z-index: -10;
-        pointer-events: none;
         transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
       .card::after {
@@ -394,34 +438,8 @@
         position: absolute;
         inset: 0;
         background: linear-gradient(-45deg, #184f40 0%, #53b2c9 100%);
-        transform: translate3d(0, 0, 0) scale(0.95);
+        transform: scale(0.95);
         filter: blur(20px);
-      }
-      .heading {
-        font-size: 22px;
-        font-weight: 700;
-        margin-bottom: 5px;
-      }
-      .subheading {
-        font-size: 18px;
-        font-weight: 600;
-        color: #ffb000;
-        margin-bottom: 10px;
-      }
-      ul {
-        list-style: none;
-        padding: 0;
-        text-align: left;
-        margin: 0;
-      }
-      ul li {
-        font-size: 16px;
-        padding: 5px 0;
-      }
-      .tick::before {
-        content: "✔";
-        color: green;
-        margin-right: 5px;
       }
       .card:hover::after {
         filter: blur(30px);
@@ -429,79 +447,74 @@
       .card:hover::before {
         transform: rotate(-90deg) scaleX(1.34) scaleY(0.77);
       }
-      .buy-button {
-        margin-top: 15px;
-        padding: 8px 18px;
-        border: none;
-        background-color: #157a6e;
-        color: #ffffff;
-        border-radius: 6px;
-        font-size: 16px;
+      .heading {
+        font-size: 22px;
+        font-weight: 700;
+      }
+      .subheading {
+        font-size: 18px;
         font-weight: 600;
-        cursor: pointer;
-        transition: background-color 0.3s;
+        color: #ffb000;
+      }
+      .buy-button {
+        background-color: var(--primary);
+        color: #fff;
+        padding: 8px 18px;
+        border-radius: 6px;
+        border: none;
       }
       .buy-button:hover {
-        background-color: #417863;
+        background-color: var(--success);
       }
 
-      /* Updated Footer Styles */
-      footer {
-        background-color: #157a6e;
-        color: #ffffff;
-        padding: 30px 0;
+      /* Footer */
+      .footer {
+        background-color: var(--primary);
+        color: white;
+        padding: 40px 0;
         margin-top: 50px;
-        position: relative; /* Ensure the button positions relative to the footer */
+        position: relative;
       }
-
-      .footer-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
+      .footer h5 {
+        font-weight: bold;
+        color: var(--secondary);
       }
-
-      .footer-column {
-        padding: 0 20px;
-      }
-      .footer-column h5 {
-        font-size: 20px;
-        font-weight: 600;
-        margin-bottom: 15px;
-        color: #f6af65;
-      }
-
-      .footer-column p,
-      .footer-column a {
-        font-size: 16px;
-        color: #ffffff;
+      .footer a {
+        color: white;
         text-decoration: none;
-        margin-bottom: 10px;
-        line-height: 1.4;
       }
-
-      .footer-column a:hover {
-        font-weight: 700;
+      .footer a:hover {
         text-decoration: underline;
       }
-
-      .social-icons {
-        margin-top: 15px;
-      }
-
       .social-icons a {
-        color: #ffffff;
-        font-size: 20px;
-        margin-right: 15px;
-        transition: color 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        margin: 5px;
+        border: 1px solid white;
+        border-radius: 50%;
+        color: white;
+        text-decoration: none;
       }
-
       .social-icons a:hover {
-        color: #f6af65;
+        background-color: var(--secondary);
       }
-
-      /* Back to Top Button */
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        margin-top: 20px;
+        padding-top: 10px;
+        text-align: center;
+      }
+      .download-btn {
+        width: 150px;
+        margin: 10px;
+        transition: transform 0.2s ease-in-out;
+      }
+      .download-btn:hover {
+        transform: scale(1.1);
+      }
       #backToTopBtn {
         background-color: #f6af65;
         color: #ffffff;
@@ -515,229 +528,228 @@
         transition: background-color 0.3s ease, transform 0.3s ease;
         position: absolute;
         top: -60px;
-        left: 20px;
+        right: 20px;
       }
-
       #backToTopBtn:hover {
         background-color: #157a6e;
         transform: scale(1.1);
       }
 
-      /* Unique Card Section Styles (mobi-card) */
-      .mobi-card-section {
-        margin: 50px auto;
-        text-align: center;
-        max-width: 1200px;
+      /* Media Queries for Responsiveness */
+      @media (min-width: 1200px) {
+        .hero-content {
+          justify-content: flex-end;
+        }
+        .login-box {
+          margin-right: 50px;
+          max-width: 450px;
+        }
       }
-
-      .mobi-card-container {
-        width: 100%;
-      }
-
-      .mobi-card.mb-3 {
-        max-width: 100%;
-        margin: 0 auto;
-        border: none;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border-radius: 10px;
-        padding: 30px;
-      }
-
-      .mobi-card.mb-3:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-      }
-
-      .mobi-card .row {
-        display: flex;
-        align-items: center;
-      }
-
-      .mobi-card-img {
-        width: 460px;
-        height: 400px;
-        object-fit: cover;
-        border-radius: 15px 0 0 15px;
-        background: rgba(181, 255, 225, 0.3);
-      }
-
-      .mobi-card-body {
-        background: #ffffff;
-        border-radius: 0 15px 15px 0;
-      }
-
-      .mobi-card-title {
-        font-size: 32px;
-        color: #f6af65;
-        font-weight: 700;
-        margin-bottom: 20px;
-        transition: color 0.3s ease;
-      }
-
-      .mobi-card-text {
-        font-size: 18px;
-        color: #000000;
-        margin-bottom: 20px;
-        line-height: 1.6;
-      }
-
-      .mobi-card-list {
-        list-style: none;
-        padding: 0;
-        margin-bottom: 25px;
-      }
-
-      .mobi-card-list li {
-        font-size: 18px;
-        color: #000000;
-        margin-bottom: 15px;
-        line-height: 1.1;
-      }
-
-      .tick::before {
-        content: "✔";
-        color: #157a6e;
-        margin-right: 12px;
-      }
-
-      .explore-button {
-        background-color: #157a6e;
-        color: #ffffff;
-        border: none;
-        padding: 5px 5px;
-        border-radius: 8px;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-      }
-
-      .explore-button:hover {
-        background-color: #f6af65;
-        transform: translateY(-3px);
+      @media (max-width: 768px) {
+        .recommended-container {
+          flex-direction: column;
+          align-items: center;
+        }
+        .recommended-card {
+          max-width: 400px;
+        }
+        .hero-content {
+          background: none;
+          height: auto;
+          justify-content: center;
+        }
+        .login-box {
+          margin: 0;
+          padding: 15px;
+        }
+        .sim-card-container {
+          flex-direction: column;
+          align-items: center;
+        }
+        .steps-container {
+          flex-direction: column;
+          align-items: center;
+        }
+        .arrow {
+          display: none;
+        }
+        .steps-container .arrow {
+          display: block;
+          position: static;
+          margin: 10px 0;
+          transform: rotate(90deg);
+        }
+        .arrow-1,
+        .arrow-2,
+        .arrow-3 {
+          left: auto;
+          animation-delay: 0s;
+        }
+        .mobi-card .row {
+          flex-direction: column;
+        }
+        .mobi-card-img {
+          border-radius: 15px 15px 0 0;
+          max-height: 300px;
+        }
+        .mobi-card-body {
+          border-radius: 0 0 15px 15px;
+        }
+        .card-container {
+          flex-direction: column;
+          align-items: center;
+        }
+        .card {
+          max-width: 300px;
+        }
+        .footer-container {
+          flex-direction: column;
+          text-align: center;
+        }
       }
     </style>
   </head>
   <body>
-    <!-- Toast container -->
+    <!-- Toast Container -->
     <div id="toast-container"></div>
 
     <!-- Navbar -->
-    <nav class="navbar">
-      <div class="navbar-brand">Mobi-Comm</div>
-      <div class="nav-links">
-        <a href="Homepage.html">Recharge</a>
-        <a href="PlansPage2.html">Prepaid</a>
-        <a href="Aboutuspage.html">Business</a>
-        <a href="Aboutuspage.html">International Roaming</a>
-        <a href="Aboutuspage.html">Support</a>
-      </div>
-      <div class="nav-right">
-        <a href="ProfilePage.html" class="user-icon">
-          <i class="fa-solid fa-circle-user"></i>
-        </a>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Mobi-Comm</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="nav-links ms-auto d-flex gap-4">
+            <a href="Recharge.html">Recharge</a>
+            <a href="PlansPage2.html">Prepaid</a>
+            <a href="SupportandFeedback.html">Support</a>
+            <a href="Aboutuspage.html">About Us</a>
+          </div>
+          <div class="nav-right ms-4 d-flex gap-3">
+            <a href="SearchPage.html" class="search-icon"
+              ><i class="fa-solid fa-magnifying-glass"></i
+            ></a>
+            <div class="dropdown">
+              <a
+                class="user-icon dropdown-toggle"
+                id="userDropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-circle-user"></i>
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="userDropdown"
+                id="userDropdownMenu"
+              >
+                <!-- Dropdown items will be dynamically populated by JavaScript -->
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
 
     <!-- Hero Section -->
     <div class="container hero-section">
-      <div class="hero-content">
-        <img
-          src="young-curly-handsome-man-pointed-side-from-hole-green-paper.jpg"
-          alt="Image"
-          width="300"
-          height="400"
-          class="rounded-4"
-          style="display: none"
-        />
-        <div class="container d-flex justify-content-center align-items-right">
-          <div class="login-box p-2 border rounded-3 shadow-sm">
-            <div id="mobile-section">
-              <h1 class="text-secondary display-5 fw-bold text-center">
-                Power Up your Digital World!
-              </h1>
-              <br />
-              <div id="number-input-section">
-                <p class="fw-bold text-center">Enter Mobile Number</p>
-                <input
-                  type="text"
-                  id="mobileNumber"
-                  class="form-control mb-2 w-75 ms-5"
-                  placeholder="Enter number"
-                  required
-                />
-                <small
-                  id="numberError"
-                  style="color: red; display: block"
-                ></small>
-                <button onclick="validateNumber()" class="mt-4 ms-5 login">
-                  Login
-                </button>
-              </div>
-              <p class="mt-2 text-center fw-bold">
-                Experience Limitless Connectivity Like Never Before !
+      <div class="hero-content rounded-4">
+        <div class="login-box">
+          <h1 class="text-secondary display-5 fw-bold">
+            Power Up your Digital World!
+          </h1>
+          <p class="fs-5 mt-3">Login to Mobi-Comm</p>
+          <input
+            type="text"
+            id="mobileNumber"
+            class="form-control mb-2"
+            placeholder="Enter number"
+            required
+          />
+          <small id="numberError" style="color: red; display: block"></small>
+          <!-- OTP Section (Initially Hidden) -->
+          <div id="otpSection">
+            <input
+              type="text"
+              id="otpCode"
+              class="form-control mb-2"
+              placeholder="Enter OTP"
+              required
+            />
+            <button onclick="verifyOtp()" class="login-btn mt-2">
+              Verify OTP
+            </button>
+          </div>
+          <button onclick="requestOtp()" class="login-btn mt-4" id="loginBtn">
+            Send OTP
+          </button>
+          <p class="mt-3 fs-5">
+            Experience Limitless Connectivity Like Never Before!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIM Card Section -->
+    <div class="container">
+      <div class="sim-card-container">
+        <div class="sim-card">
+          <div class="d-flex align-items-center">
+            <i class="fas fa-sim-card sim-card-icon"></i>
+            <div class="sim-card-content">
+              <h5 class="text-primary">Get a New SIM</h5>
+              <p>
+                Order your Mobi-Comm SIM today and dive into seamless
+                connectivity!
               </p>
             </div>
           </div>
+          <a href="Simcard.html" class="sim-card-arrow"
+            ><i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="sim-card">
+          <div class="d-flex align-items-center">
+            <i class="fas fa-exchange-alt sim-card-icon"></i>
+            <div class="sim-card-content">
+              <h5 class="text-primary">Port to Mobi-Comm</h5>
+              <p>
+                Switch to Mobi-Comm and enjoy the fastest 4G network in India!
+              </p>
+            </div>
+          </div>
+          <a href="Simcard.html" class="sim-card-arrow"
+            ><i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="sim-card">
+          <div class="d-flex align-items-center">
+            <i class="fas fa-mobile-alt sim-card-icon"></i>
+            <div class="sim-card-content">
+              <h5 class="text-primary">Get an eSIM</h5>
+              <p>
+                Go digital with an eSIM for instant, hassle-free activation!
+              </p>
+            </div>
+          </div>
+          <a href="Simcard.html" class="sim-card-arrow"
+            ><i class="fas fa-arrow-right"></i
+          ></a>
         </div>
       </div>
     </div>
     <br />
-
-    <!-- New SIM Cards Section -->
-    <section class="sim-cards-section">
-      <div class="sim-cards-container">
-        <!-- Card 1: Get a New SIM -->
-        <div class="sim-card">
-          <div class="sim-card-icon">
-            <i class="fas fa-sim-card"></i>
-          </div>
-          <div class="sim-card-content">
-            <h5 class="sim-card-title">
-              Get a New SIM <a href="GetNewSIM.html" class="sim-card-link">→</a>
-            </h5>
-            <p class="sim-card-text">
-              Order your Mobi-Comm SIM today and dive into seamless
-              connectivity!
-            </p>
-          </div>
-        </div>
-        <!-- Card 2: Port to Mobi-Comm -->
-        <div class="sim-card">
-          <div class="sim-card-icon">
-            <i class="fas fa-arrows-alt-h"></i>
-          </div>
-          <div class="sim-card-content">
-            <h5 class="sim-card-title">
-              Port to Mobi-Comm
-              <a href="PortToMobiComm.html" class="sim-card-link">→</a>
-            </h5>
-            <p class="sim-card-text">
-              Switch to Mobi-Comm and enjoy the fastest 4G network in India!
-            </p>
-          </div>
-        </div>
-        <!-- Card 3: Get an eSIM -->
-        <div class="sim-card">
-          <div class="sim-card-icon">
-            <i class="fas fa-mobile-alt"></i>
-          </div>
-          <div class="sim-card-content">
-            <h5 class="sim-card-title">
-              Get an eSIM <a href="GetESIM.html" class="sim-card-link">→</a>
-            </h5>
-            <p class="sim-card-text">
-              Go digital with an eSIM for instant, hassle-free activation!
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <br />
     <!-- Steps Section -->
     <div class="steps-section">
-      <h2 class="text-dark">Your path to join Mobi-Comm today</h2>
+      <h2>Your path to join Mobi-Comm today</h2>
       <div class="steps-container">
         <div class="step">
           <div class="step-icon">📱</div>
@@ -762,7 +774,119 @@
     </div>
     <br />
 
-    <!-- Unique Card Section (mobi-card) -->
+    <!-- Recommended for You Section -->
+    <section class="recommended-section">
+      <h2 class="text-center mb-5">Trending Plans for you</h2>
+      <div class="recommended-container">
+        <div class="recommended-card">
+          <img
+            src="Assets/Images/recommendfamily.jpg"
+            alt="Fiber Plan"
+            class="recommended-img"
+          />
+          <div class="recommended-body">
+            <p class="category-label text-primary">FAMILY PLANS</p>
+            <h5 class="recommended-title">Enrich you family time</h5>
+            <p class="recommended-text">
+              <!-- here we will fetch data from database features-->
+            </p>
+            <button class="buy-now-btn">Buy Now</button>
+          </div>
+        </div>
+        <div class="recommended-card">
+          <img
+            src="Assets/Images/recommendstudent.jpg"
+            alt="Postpaid Plan"
+            class="recommended-img"
+          />
+          <div class="recommended-body">
+            <p class="category-label text-primary">STUDENT PLANS</p>
+            <h5 class="recommended-title">Special plans on Study Booster</h5>
+            <p class="recommended-text">
+              <!-- here we will fetch data from database features-->
+            </p>
+            <button class="buy-now-btn">Buy Now</button>
+          </div>
+        </div>
+        <div class="recommended-card">
+          <img
+            src="Assets/Images/recommnedOTT.jpg"
+            alt="Prepaid Plan"
+            class="recommended-img"
+          />
+          <div class="recommended-body">
+            <p class="category-label text-primary">OTT Benefits</p>
+            <h5 class="recommended-title">Go for unlimited entertainment</h5>
+            <p class="recommended-text">
+              <!-- here we will fetch data from database features-->
+            </p>
+            <button class="buy-now-btn">Buy Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <br />
+    <br />
+
+    <!-- Data Plans Section -->
+    <h2 class="data text-center">
+      Pick the <b>perfect data plan</b> tailored to your <b>lifestyle.</b>
+    </h2>
+    <br /><br /><br />
+    <div class="card-container">
+      <div class="card">
+        <p class="heading">1 GB/day</p>
+        <p class="subheading">Unlimited Calls!</p>
+        <ul>
+          <li class="tick">Best value on Budget to connect with friends</li>
+          <li class="tick">Surf the internet,enjoy social media picks</li>
+          <li class="tick">
+            Talk to your loved ones with unlimited voice calls
+          </li>
+        </ul>
+        <button
+          class="buy-button"
+          onclick="window.location.href='PlansPage2.html'"
+        >
+          Explore Plans
+        </button>
+      </div>
+      <div class="card">
+        <p class="heading">2 GB/day</p>
+        <p class="subheading">Unlimited calls, SMS !</p>
+        <ul>
+          <li class="tick">Best value on enjoying your free time</li>
+          <li class="tick">Stream movies, listen to music, share content</li>
+          <li class="tick">
+            Connect with others via uninterrupted video calls
+          </li>
+        </ul>
+        <button
+          class="buy-button"
+          onclick="window.location.href='PlansPage2.html'"
+        >
+          Explore Plans
+        </button>
+      </div>
+      <div class="card">
+        <p class="heading">2.5 GB/day</p>
+        <p class="subheading">Unlimited calls, SMS !</p>
+        <ul>
+          <li class="tick">Best value packed with fun, Entertainment</li>
+          <li class="tick">Stay online for work, learning, shopping</li>
+          <li class="tick">Enjoy 4K cricket or lag-free gaming you love</li>
+        </ul>
+        <button
+          class="buy-button"
+          onclick="window.location.href='PlansPage2.html'"
+        >
+          Explore Plans
+        </button>
+      </div>
+    </div>
+    <br /><br />
+
+    <!-- Mobi-Card Section -->
     <section class="mobi-card-section">
       <div class="mobi-card-container">
         <div class="mobi-card mb-3">
@@ -770,30 +894,27 @@
             <div class="col-md-5">
               <img
                 src="Assets/Images/tree-200795_1280.jpg"
-                class="mobi-card-img img-fluid rounded-3"
+                class="mobi-card-img"
                 alt="Mobi-Comm Team"
               />
             </div>
             <div class="col-md-7">
-              <div class="mobi-card-body">
-                <h3 class="mobi-card-title ps-5">
-                  Empower Your Connectivity with
+              <div class="mobi-card-body p-4">
+                <h3 class="mobi-card-title">
+                  Everyone Prefer for
                   <span style="color: #157a6e">Mobi-Comm</span>
                 </h3>
                 <p class="mobi-card-text">
                   Boost your mobile experience with Mobi-Comm’s cutting-edge
-                  solutions. From fast recharges to seamless roaming, we’re here
-                  to connect you effortlessly.
+                  solutions.
                 </p>
                 <ul class="mobi-card-list">
-                  <li class="tick">
-                    Fast and reliable recharge options for every need.
+                  <li><i class="fas fa-bolt"></i> Recharge in 30 SECONDS</li>
+                  <li>
+                    <i class="fas fa-signal"></i> 99% Coverage anywhere in INDIA
                   </li>
-                  <li class="tick">
-                    Strong signal assurance for uninterrupted connectivity.
-                  </li>
-                  <li class="tick">
-                    Effortless roaming packs for worry-free travel.
+                  <li>
+                    <i class="fas fa-globe"></i>Affordable plans for all BUDGETS
                   </li>
                 </ul>
                 <button
@@ -808,130 +929,122 @@
         </div>
       </div>
     </section>
-    <br /><br />
+    <br />
 
-    <!-- Data Plans Section -->
-    <h2 class="display-6 text-center text-secondary">
-      Pick the <b>perfect data plan</b> tailored to your <b>lifestyle.</b>
-    </h2>
-    <br /><br /><br />
-    <div class="card-container">
-      <div class="card">
-        <p class="heading">1.5 GB/day</p>
-        <p class="subheading">Unlimited calls and SMS</p>
-        <ul>
-          <li class="tick">India's best value plan.</li>
-          <li class="tick">
-            Surf the internet, enjoy social media, and connect with friends
-          </li>
-          <li class="tick">
-            Talk to your loved ones with unlimited voice calls
-          </li>
-        </ul>
-        <button
-          class="buy-button"
-          onclick="window.location.href='PlansPage2.html'"
-        >
-          Explore Plans
-        </button>
-      </div>
-      <div class="card">
-        <p class="heading">2 GB/day</p>
-        <p class="subheading">Unlimited calls and SMS</p>
-        <ul>
-          <li class="tick">India's always-connected plans</li>
-          <li class="tick">
-            Stream movies, listen to music, and share content
-          </li>
-          <li class="tick">
-            Connect with others via uninterrupted video calls
-          </li>
-        </ul>
-        <button
-          class="buy-button"
-          onclick="window.location.href='PlansPage2.html'"
-        >
-          Explore Plans
-        </button>
-      </div>
-      <div class="card">
-        <p class="heading">2.5 GB/day</p>
-        <p class="subheading">Unlimited calls and SMS</p>
-        <ul>
-          <li class="tick">India's on-the-go best plans</li>
-          <li class="tick">Stay online for work, learning, and shopping</li>
-          <li class="tick">Enjoy 4K cricket or lag-free gaming</li>
-        </ul>
-        <button
-          class="buy-button"
-          onclick="window.location.href='PlansPage2.html'"
-        >
-          Explore Plans
-        </button>
-      </div>
-    </div>
-    <br /><br /><br />
-
-    <!-- Updated Footer -->
-    <footer>
+    <!-- Footer -->
+    <footer class="footer">
       <button id="backToTopBtn" title="Go to top">
         <i class="fa-solid fa-chevron-up"></i>
       </button>
-      <div class="footer-container">
-        <div class="footer-column">
-          <h5>Quick Links</h5>
-          <p><a href="Aboutuspage.html">About Us</a></p>
-          <p><a href="FAQsPage.html">FAQs</a></p>
-          <p><a href="MyAccount.html">My Account</a></p>
-          <p><a href="https://commonsupportcentre.com/">Support</a></p>
-        </div>
-        <div class="footer-column">
-          <h5>Mobi-Comm Service Limited</h5>
-          <p>
-            Mobi-Comm, a mobile service provider in India, offers voice and data
-            services across 2G, 3G, and 4G networks under its prepaid mobile
-            plans.
-          </p>
-          <div class="social-icons">
-            <a href="https://www.instagram.com/yourusername" target="_blank"
-              ><i class="fab fa-instagram"></i
-            ></a>
-            <a href="https://www.facebook.com/yourusername" target="_blank"
-              ><i class="fab fa-facebook"></i
-            ></a>
-            <a href="https://www.twitter.com/yourusername" target="_blank"
-              ><i class="fab fa-twitter"></i
-            ></a>
-            <a href="https://www.youtube.com/yourchannel" target="_blank"
-              ><i class="fab fa-youtube"></i
-            ></a>
-            <a href="https://www.linkedin.com/in/yourprofile" target="_blank"
-              ><i class="fab fa-linkedin"></i
-            ></a>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <h5>Mobi-Comm Service Limited</h5>
+            <p>
+              Mobi-Comm, a mobile service provider in India, offers voice and
+              data services across 2G, 3G, and 4G networks under its prepaid
+              mobile plans.
+            </p>
+            <div class="social-icons">
+              <a href="https://www.instagram.com/yourusername" target="_blank"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://www.facebook.com/yourusername" target="_blank"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a href="https://www.twitter.com/yourusername" target="_blank"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="https://www.youtube.com/yourchannel" target="_blank"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a href="https://www.linkedin.com/in/yourprofile" target="_blank"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="Aboutuspage.html">About Us</a></li>
+              <li><a href="FAQsPage.html">FAQs</a></li>
+              <li><a href="MyAccount.html">My Account</a></li>
+              <li><a href="https://commonsupportcentre.com/">Support</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h5>Contact Us</h5>
+            <p>Mobi-Comm Headquarters</p>
+            <p>123 Telecom Street, Tech City, India</p>
+            <p><strong>Phone:</strong> +91 9361155275</p>
+          </div>
+          <div class="col-md-4 text-center">
+            <h5>Download Mobi-Comm</h5>
+            <a href="AppLaunch.html" target="_blank">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/512px-Google_Play_Store_badge_EN.svg.png"
+                alt="Google Play"
+                class="download-btn"
+              />
+            </a>
+            <a href="AppLaunch.html" target="_blank">
+              <img
+                src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                alt="App Store"
+                class="download-btn"
+              />
+            </a>
           </div>
         </div>
-        <div class="footer-column">
-          <h5>Contact Us</h5>
-          <p>Mobi-Comm Headquarters</p>
-          <p>123 Telecom Street, Tech City, India - 560001</p>
-          <p>Phone: +91 9876543210</p>
-        </div>
+        <div class="footer-bottom">© 2025 Mobi-Comm. All Rights Reserved.</div>
       </div>
     </footer>
 
     <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-      // Number Validation for Login
-      function showToast(message, delay) {
+      // Function to update navbar based on authentication state
+      function updateNavbar() {
+        const jwt = localStorage.getItem("jwt");
+        const dropdownMenu = document.getElementById("userDropdownMenu");
+
+        // Clear existing dropdown items
+        dropdownMenu.innerHTML = "";
+
+        if (!jwt) {
+          // Unauthenticated state: Show only "Log In"
+          dropdownMenu.innerHTML = `
+            <li><a class="dropdown-item" href="LoginPage.html">Log In</a></li>
+          `;
+        } else {
+          // Authenticated state: Show "Log Out" and "My Account"
+          dropdownMenu.innerHTML = `
+            <li><a class="dropdown-item" href="#" onclick="logout()">Log Out</a></li>
+            <li><a class="dropdown-item" href="MyAccount.html">My Account</a></li>
+          `;
+        }
+      }
+
+      // Logout function
+      function logout() {
+        localStorage.removeItem("jwt");
+        showToast("Logged out successfully!", 3000, "#157a6e");
+        setTimeout(() => (window.location.href = "LoginPage.html"), 2000);
+      }
+
+      // Initial call to update navbar
+      updateNavbar();
+
+      function showToast(message, delay, bgColor = "#1E90FF") {
         const toastContainer = document.getElementById("toast-container");
         const toast = document.createElement("div");
         toast.className = `toast align-items-center border-0`;
-        toast.style.backgroundColor = "#1E90FF";
+        toast.style.backgroundColor = bgColor;
         toast.style.color = "white";
         toast.innerHTML = `
           <div class="d-flex">
-            <div class="toast-body">${message}</div>
-            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close" style="filter: invert(1);"></button>
+              <div class="toast-body">${message}</div>
+              <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close" style="filter: invert(1);"></button>
           </div>
         `;
         toastContainer.appendChild(toast);
@@ -940,77 +1053,77 @@
           autohide: true,
         });
         bsToast.show();
-        toast.addEventListener("hidden.bs.toast", function () {
-          toast.remove();
-        });
+        toast.addEventListener("hidden.bs.toast", () => toast.remove());
       }
 
-      function validateNumber() {
-        const numberInput = document.getElementById("mobileNumber").value;
+      function requestOtp() {
+        const mobileNumber = document.getElementById("mobileNumber").value;
         const numberError = document.getElementById("numberError");
-        const validNumbers = [
-          "9361155275",
-          "9500616076",
-          "9994281081",
-          "9894093939",
-          "9750599892",
-        ];
-
         const phoneRegex = /^[6-9]\d{9}$/;
 
-        if (!phoneRegex.test(numberInput)) {
+        if (!phoneRegex.test(mobileNumber)) {
           numberError.textContent =
             "Please enter a valid 10-digit mobile number.";
           return;
         }
 
-        if (validNumbers.includes(numberInput)) {
-          showToast("Login Successful!", 3000);
-          setTimeout(function () {
-            window.location.href = "Homepage.html";
-          }, 2000);
-        } else {
-          numberError.textContent =
-            "Not a Mobi-Comm User. Please enter a valid User Number.";
-        }
+        fetch("http://localhost:9090/api/user/request-otp", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ mobileNumber }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              return response.text().then((text) => {
+                throw new Error(text);
+              });
+            }
+            return response.text();
+          })
+          .then((message) => {
+            showToast("OTP Sent Successfully!", 3000, "#157a6e");
+            document.getElementById("otpSection").style.display = "block";
+            document.getElementById("loginBtn").style.display = "none";
+            document.getElementById("numberError").textContent = "";
+          })
+          .catch((error) => {
+            showToast("Error: " + error.message, 3000, "#dc3545");
+            console.error(error);
+          });
       }
 
-      // Back to Top Functionality
-      document
-        .getElementById("backToTopBtn")
-        .addEventListener("click", function () {
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
+      function verifyOtp() {
+        const mobileNumber = document.getElementById("mobileNumber").value;
+        const otpCode = document.getElementById("otpCode").value;
+
+        fetch("http://localhost:9090/api/user/verify-otp", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ mobileNumber, otp: otpCode }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.jwt) {
+              // Store details in sessionStorage
+              sessionStorage.setItem("jwt", data.jwt);
+              sessionStorage.setItem("userId", data.userId);
+              sessionStorage.setItem("username", data.username);
+              sessionStorage.setItem("email", data.email);
+              sessionStorage.setItem("mobile", data.mobile);
+
+              window.location.href = "Homepage.html";
+            } else {
+              showToast("Invalid OTP", 3000, "#dc3545");
+            }
+          })
+          .catch((error) => {
+            showToast("Error verifying OTP", 3000, "#dc3545");
           });
-        });
+      }
+
+      document.getElementById("backToTopBtn").addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
-
-<!-- <div class="load">
-  <hr/><hr/><hr/><hr/>
-</div>
-
-
-body{background:#ECF0F1}
-
-.load{position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);
-  /*change these sizes to fit into your project*/
-  width:100px;
-  height:100px;
-}
-.load hr{border:0;margin:0;width:40%;height:40%;position:absolute;border-radius:50%;animation:spin 2s ease infinite}
-
-.load :first-child{background:#19A68C;animation-delay:-1.5s}
-.load :nth-child(2){background:#F63D3A;animation-delay:-1s}
-.load :nth-child(3){background:#FDA543;animation-delay:-0.5s}
-.load :last-child{background:#193B48}
-
-@keyframes spin{
-  0%,100%{transform:translate(0)}
-  25%{transform:translate(160%)}
-  50%{transform:translate(160%, 160%)}
-  75%{transform:translate(0, 160%)}
-}-->

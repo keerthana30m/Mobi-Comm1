@@ -20,34 +20,31 @@
       /* Base Styles */
       body {
         font-family: "Cabin", sans-serif;
+        margin: 0;
+        padding: 0;
       }
 
-      /* Navbar Styles (Unchanged, Default) */
+      /* Navbar Styles (Copied from LoginPage.html) */
       .navbar {
+        background-color: #157a6e;
+        padding: 8px 20px;
         position: fixed;
         top: 0;
         width: 100%;
-        background-color: #157a6e;
-        padding: 10px 30px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         z-index: 1000;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       }
-
       .navbar-brand {
         font-family: "Orbitron", sans-serif;
         font-size: 28px;
         font-weight: 700;
-        color: #f6af65;
+        color: #fff;
         text-transform: uppercase;
         letter-spacing: 2px;
         text-shadow: 0 0 10px rgba(246, 175, 101, 0.8);
         animation: glow 2s infinite alternate;
         transition: transform 0.3s ease, color 0.3s ease;
       }
-
       @keyframes glow {
         0% {
           text-shadow: 0 0 10px rgba(246, 175, 101, 0.8);
@@ -57,26 +54,19 @@
             0 0 30px rgba(181, 255, 225, 0.5);
         }
       }
-
       .navbar-brand:hover {
         transform: scale(1.05);
-        color: #b5ffe1;
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 40px;
-      }
-
-      .nav-links a {
         color: #f6af65;
-        font-size: 18px;
-        font-weight: 500;
+      }
+      .nav-links a {
+        color: #fff;
+        font-size: 17px;
+        font-weight: 350;
         text-decoration: none;
         position: relative;
         transition: color 0.3s ease;
+        margin: 0 15px;
       }
-
       .nav-links a::after {
         content: "";
         position: absolute;
@@ -84,94 +74,152 @@
         height: 2px;
         bottom: -5px;
         left: 0;
-        background-color: #b5ffe1;
+        background-color: #fff;
         transition: width 0.3s ease;
       }
-
       .nav-links a:hover::after {
         width: 100%;
       }
-
       .nav-links a:hover {
-        color: #b5ffe1;
+        color: #f6af65;
+        transform: scale(1.05);
+      }
+      .nav-right .search-icon,
+      .nav-right .user-icon {
+        font-size: 20px;
+        color: #fff;
+        margin: 0 10px;
+      }
+      .nav-right .search-icon:hover,
+      .nav-right .user-icon:hover {
+        color: #f6af65;
+        transform: scale(1.05);
+      }
+      .dropdown-menu {
+        background-color: #fff;
+        border: none;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+      }
+      .dropdown-item {
+        color: #157a6e;
+        font-size: 16px;
+        padding: 5px 10px;
+      }
+      .dropdown-item:hover {
+        background-color: #f6af65;
+        color: #fff;
       }
 
-      .nav-right {
-        display: flex;
+      /* Footer Styles (Copied from LoginPage.html) */
+      .footer {
+        background-color: #157a6e;
+        color: white;
+        padding: 40px 0;
+        margin-top: 50px;
+        position: relative;
+      }
+      .footer h5 {
+        font-weight: bold;
+        color: #f6af65;
+      }
+      .footer a {
+        color: white;
+        text-decoration: none;
+      }
+      .footer a:hover {
+        text-decoration: underline;
+      }
+      .social-icons a {
+        display: inline-flex;
         align-items: center;
-        gap: 20px;
-      }
-
-      .profile-icon {
+        justify-content: center;
         width: 40px;
         height: 40px;
-        background: #f6af65;
+        margin: 5px;
+        border: 1px solid white;
         border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #157a6e;
-        font-size: 20px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: transform 0.3s ease, background 0.3s ease;
+        color: white;
+        text-decoration: none;
       }
-
-      .profile-icon:hover {
-        transform: rotate(360deg);
-        background: #bc4749;
+      .social-icons a:hover {
+        background-color: #f6af65;
       }
-
-      /* Shining Line Below Navbar */
-      .navbar::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 5px;
-        background: linear-gradient(90deg, transparent, #134732, transparent);
-        animation: shine 3s infinite linear;
-      }
-
-      @keyframes shine {
-        0% {
-          transform: translateX(-100%);
-        }
-        100% {
-          transform: translateX(100%);
-        }
-      }
-
-      /* Carousel Styles (Unchanged, Matching Your Design) */
-      .carousel-section {
-        margin-top: 80px; /* Account for fixed navbar */
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 225, 0.2);
+        margin-top: 20px;
+        padding-top: 10px;
         text-align: center;
       }
+      .download-btn {
+        width: 150px;
+        margin: 10px;
+        transition: transform 0.2s ease-in-out;
+      }
+      .download-btn:hover {
+        transform: scale(1.1);
+      }
 
+      /* Responsive Design for Navbar and Footer */
+      @media (max-width: 768px) {
+        .navbar {
+          padding: 10px;
+        }
+        .nav-links {
+          display: none; /* Hide links on mobile by default */
+        }
+        .nav-links.active {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 60px;
+          left: 0;
+          width: 100%;
+          background-color: #157a6e;
+          padding: 10px 0;
+        }
+        .nav-links a {
+          margin: 10px 20px;
+        }
+        .nav-right {
+          gap: 10px;
+        }
+        .footer-container {
+          flex-direction: column;
+          text-align: center;
+        }
+        .footer-column {
+          margin-bottom: 20px;
+        }
+        .social-icons a {
+          margin: 5px 5px;
+        }
+      }
+
+      /* Existing Styles (Unchanged) */
+      .carousel-section {
+        margin-top: 80px;
+        text-align: center;
+      }
       .carousel {
         max-width: 100%;
         margin: 0 auto;
       }
-
       .carousel-inner {
         background: none;
         border-radius: 0;
       }
-
       .carousel-item {
         position: relative;
         height: 400px;
         overflow: hidden;
       }
-
       .carousel-item img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         border-radius: 15px;
       }
-
       .carousel-item::after {
         content: "";
         position: absolute;
@@ -183,12 +231,10 @@
         z-index: 1;
         border-radius: 20px;
       }
-
       .carousel-caption {
         position: relative;
         z-index: 2;
       }
-
       .carousel-caption h5 {
         font-size: 36px;
         font-weight: 700;
@@ -196,17 +242,14 @@
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         transition: transform 0.3s ease;
       }
-
       .carousel-caption h5:hover {
         transform: scale(1.05);
       }
-
       .carousel-caption p {
         font-size: 20px;
         color: #ffffff;
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
       }
-
       .custom-btn {
         background-color: #157a6e;
         border: none;
@@ -218,9 +261,9 @@
         cursor: pointer;
         position: relative;
         top: -10px;
-        transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, text-shadow 0.3s ease;
+        transition: background-color 0.3s ease, transform 0.3s ease,
+          color 0.3s ease, box-shadow 0.3s ease, text-shadow 0.3s ease;
       }
-
       .custom-btn:hover:not(:disabled) {
         background: #316350;
         color: white;
@@ -228,54 +271,44 @@
         transform: translateY(-2px);
         box-shadow: 0 0.3rem #316350;
       }
-
       .custom-btn:active {
         color: white;
         box-shadow: 0 0.1rem #dfd9d9;
         transform: translateY(0.1rem);
       }
-
       .custom-btn:disabled {
         cursor: auto;
         color: grey;
       }
-
-      /* User’s Current Plan (Placeholder, Hold for Now) */
       .current-plan {
         margin: 50px auto;
         text-align: center;
         max-width: 1200px;
         color: #000000;
       }
-
       .current-plan h2 {
         font-size: 32px;
         color: #f6af65;
         margin-bottom: 20px;
         font-weight: 700;
       }
-
-      /* Enhanced Recommended Plans with LoginUser.html Card Design */
       .recommended-plans {
         margin: 50px auto;
         text-align: center;
         max-width: 1200px;
       }
-
       .recommended-plans h2 {
         font-size: 32px;
-        color: #f6af65;
+
         margin-bottom: 20px;
         font-weight: 700;
       }
-
       .recommended-card-container {
         display: flex;
         justify-content: center;
         gap: 50px;
         flex-wrap: wrap;
       }
-
       .recommended-card {
         position: relative;
         width: 260px;
@@ -290,7 +323,6 @@
         border-radius: 8px;
         text-align: center;
       }
-
       .recommended-card::before {
         content: "";
         position: absolute;
@@ -305,7 +337,6 @@
         pointer-events: none;
         transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
-
       .recommended-card::after {
         content: "";
         z-index: -1;
@@ -315,46 +346,38 @@
         transform: translate3d(0, 0, 0) scale(0.95);
         filter: blur(20px);
       }
-
       .recommended-card-title {
         font-size: 22px;
         font-weight: 700;
         margin-bottom: 5px;
       }
-
       .recommended-card-subheading {
         font-size: 18px;
         font-weight: 600;
         color: #ffb000;
         margin-bottom: 10px;
       }
-
       .recommended-card-list {
         list-style: none;
         padding: 0;
         text-align: left;
         margin: 0;
       }
-
       .recommended-card-list li {
         font-size: 16px;
         padding: 5px 0;
       }
-
       .recommended-card-list li.tick::before {
         content: "✔";
         color: green;
         margin-right: 5px;
       }
-
       .recommended-card:hover::after {
         filter: blur(30px);
       }
-
       .recommended-card:hover::before {
         transform: rotate(-90deg) scaleX(1.34) scaleY(0.77);
       }
-
       .recommended-card-button {
         margin-top: 15px;
         padding: 8px 18px;
@@ -367,36 +390,30 @@
         cursor: pointer;
         transition: background-color 0.3s;
       }
-
       .recommended-card-button:hover {
         background-color: #417863;
       }
-
-      /* Updated Featured Plans (One Card Per Row, Positioned Left/Right, Subtle #B5FFE1 Background) */
       .featured-plans {
         margin: 50px auto;
         text-align: center;
         max-width: 1200px;
       }
-
       .featured-plans h2 {
         font-size: 32px;
-        color: #f6af65;
+
         margin-bottom: 20px;
         font-weight: 700;
       }
-
       .featured-card-container {
         display: flex;
         flex-direction: column;
         gap: 30px;
       }
-
       .featured-card {
-        width: 100%; /* Full width for each card */
-        max-width: 1000px; /* Limit max width for readability */
-        height: 250px; /* Maintain same height */
-        background: rgba(181, 255, 225, 0.2); /* Subtle #B5FFE1 shade */
+        width: 100%;
+        max-width: 1000px;
+        height: 250px;
+        background: rgba(181, 255, 225, 0.2);
         border-radius: 12px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -404,20 +421,16 @@
         display: flex;
         align-items: center;
       }
-
       .featured-card-left {
-        margin-left: 200px; /* Align to left margin */
+        margin-left: 200px;
       }
-
       .featured-card-right {
-        margin-right: 0px; /* Align to right margin */
+        margin-right: 0px;
       }
-
       .featured-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
       }
-
       .featured-card-content {
         padding: 20px;
         flex: 1;
@@ -425,63 +438,53 @@
         flex-direction: column;
         justify-content: center;
       }
-
       .featured-card-title {
         font-size: 24px;
         color: #157a6e;
         font-weight: 700;
         margin-bottom: 10px;
       }
-
       .featured-card-text {
         font-size: 16px;
         color: #000000;
         margin-bottom: 10px;
         line-height: 1.5;
       }
-
       .featured-card-price {
         font-size: 18px;
         color: #f6af65;
         font-weight: 600;
         margin-bottom: 5px;
       }
-
       .featured-card-data {
         font-size: 16px;
         color: #000000;
         margin-bottom: 5px;
       }
-
       .featured-card-benefit {
         font-size: 16px;
         color: #000000;
         font-style: italic;
       }
-
       .featured-card-img,
       .featured-card-img-right {
-        width: 40%; /* Reduced width for slanting effect */
+        width: 40%;
         height: 100%;
         object-fit: cover;
         transition: transform 0.3s ease;
       }
-
       .featured-card-img {
-        border-radius: 0 0 0 15px; /* Slanting bottom-left */
+        border-radius: 0 0 0 15px;
         clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
       }
-
       .featured-card-img-right {
-        border-radius: 0 0 15px 0; /* Slanting bottom-right */
+        border-radius: 0 0 15px 0;
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
       }
-
       .featured-card:hover .featured-card-img,
       .featured-card:hover .featured-card-img-right {
         transform: scale(1.05);
       }
-
       .featured-get-now {
         margin-top: 12px;
         margin-left: 200px;
@@ -495,11 +498,11 @@
         font-weight: 600;
         cursor: pointer;
         box-shadow: 0 0.2rem #316350;
-        transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, text-shadow 0.3s ease;
+        transition: background-color 0.3s ease, transform 0.3s ease,
+          color 0.3s ease, box-shadow 0.3s ease, text-shadow 0.3s ease;
         position: relative;
         top: -10px;
       }
-
       .featured-get-now:hover:not(:disabled) {
         background: #316350;
         color: white;
@@ -507,38 +510,31 @@
         transform: translateY(-2px);
         box-shadow: 0 0.3rem #316350;
       }
-
       .featured-get-now:active {
         color: white;
         box-shadow: 0 0.1rem #dfd9d9;
         transform: translateY(0.1rem);
       }
-
       .featured-get-now:disabled {
         cursor: auto;
         color: grey;
       }
-
-      /* Coverage Section with Centered Map and Closing Icon */
       .coverage-section {
         margin: 50px auto;
         max-width: 1200px;
         text-align: center;
       }
-
       .coverage-title {
         font-size: 32px;
-        color: #f6af65;
+
         margin-bottom: 20px;
         font-weight: 700;
       }
-
       .coverage-text {
         font-size: 18px;
         color: #000000;
         margin-bottom: 20px;
       }
-
       .coverage-map {
         background: rgba(181, 255, 225, 0.2);
         border-radius: 15px;
@@ -551,7 +547,6 @@
         justify-content: center;
         align-items: center;
       }
-
       @keyframes zoomIn {
         from {
           transform: scale(0.8);
@@ -562,18 +557,15 @@
           opacity: 1;
         }
       }
-
       .map-image {
         width: 50%;
         border-radius: 10px;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
-
       .map-image:hover {
         transform: scale(1.05);
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
       }
-
       .coverage-close {
         position: absolute;
         top: 10px;
@@ -589,16 +581,15 @@
         cursor: pointer;
         color: #157a6e;
         font-size: 18px;
-        transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        transition: background-color 0.3s ease, transform 0.3s ease,
+          color 0.3s ease, border-color 0.3s ease;
       }
-
       .coverage-close:hover {
         background: #f6af65;
         color: #ffffff;
         border-color: #f6af65;
         transform: scale(1.1);
       }
-
       .coverage-button {
         margin-top: 0.3rem;
         width: 9rem;
@@ -610,11 +601,11 @@
         font-weight: 600;
         cursor: pointer;
         box-shadow: 0 0.2rem #316350;
-        transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, text-shadow 0.3s ease;
+        transition: background-color 0.3s ease, transform 0.3s ease,
+          color 0.3s ease, box-shadow 0.3s ease, text-shadow 0.3s ease;
         position: relative;
         top: -10px;
       }
-
       .coverage-button:hover:not(:disabled) {
         background: #316350;
         color: white;
@@ -622,19 +613,15 @@
         transform: translateY(-2px);
         box-shadow: 0 0.3rem #316350;
       }
-
       .coverage-button:active {
         color: white;
         box-shadow: 0 0.1rem #dfd9d9;
         transform: translateY(0.1rem);
       }
-
       .coverage-button:disabled {
         cursor: auto;
         color: grey;
       }
-
-      /* Rest of your styles (unchanged) */
       .recharge-container {
         display: flex;
         justify-content: space-around;
@@ -723,78 +710,113 @@
         transform: rotate(-90deg) scaleX(1.34) scaleY(0.77);
       }
 
-      /* Updated Footer Styles */
-      footer {
-        background-color: #157a6e;
-        color: #ffffff;
-        padding: 30px 0;
-        margin-top: 50px;
+      /* Responsive Design for Existing Content */
+      @media (max-width: 768px) {
+        .carousel-item {
+          height: 250px;
+        }
+        .recommended-card-container,
+        .featured-card-container {
+          flex-direction: column;
+          align-items: center;
+        }
+        .recommended-card,
+        .featured-card {
+          width: 100%;
+          max-width: 300px;
+        }
+        .featured-card-img,
+        .featured-card-img-right {
+          width: 100%;
+        }
+        .featured-card-left,
+        .featured-card-right {
+          margin-left: 0;
+          margin-right: 0;
+        }
+        .map-image {
+          width: 80%;
+        }
       }
 
-      .footer-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
+      /* New Custom Card Styles */
+      #current-plan-card.custom-card {
+        background: linear-gradient(
+          135deg,
+          rgba(184, 238, 238, 0.9),
+          rgba(184, 238, 238, 0.9)
+        );
+        color: black;
+        border-radius: 40px;
+        overflow: hidden;
+        width: 700px;
+        margin-left: 300px;
       }
-
-      .footer-column {
-        flex: 1;
-        padding: 0 20px;
+      .custom-plan-left,
+      .custom-plan-right {
+        background: rgba(255, 255, 255, 0.1);
       }
-
-      .footer-column h5 {
-        font-size: 18px;
-        font-weight: 700;
-        margin-bottom: 15px;
-        color: #f6af65;
+      .border-end-custom {
+        border-right: 2px solid rgba(255, 255, 255, 0.5);
       }
-
-      .footer-column p,
-      .footer-column a {
-        font-size: 14px;
-        color: #ffffff;
-        text-decoration: none;
+      .custom-text {
+        font-size: 1.2rem;
         margin-bottom: 10px;
-        line-height: 1.5;
-      }
-
-      .footer-column a:hover {
-        color: #b5ffe1;
-      }
-
-      .social-icons {
-        margin-top: 15px;
-      }
-
-      .social-icons a {
-        color: #ffffff;
-        font-size: 20px;
-        margin-right: 15px;
-        transition: color 0.3s ease;
-      }
-
-      .social-icons a:hover {
-        color: #f6af65;
       }
     </style>
   </head>
   <body>
-    <!-- New Navbar (Default) -->
-    <nav class="navbar">
-      <div class="navbar-brand">Mobi-Comm</div>
-      <div class="nav-links">
-        <a href="Homepage.html">Home</a>
-        <a href="PlansPage2.html">Plans</a>
-        <a href="Aboutuspage.html">About Us</a>
-      </div>
-      <div class="nav-right">
-        <div class="profile-icon" title="User Profile">K</div>
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- Navbar (Updated for Authentication State) -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="Homepage.html">Mobi-Comm</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="nav-links ms-auto d-flex gap-4">
+            <a href="Homepage.html">Home</a>
+            <a href="PlansPage2.html">Plans</a>
+            <a href="Aboutuspage.html">About Us</a>
+          </div>
+          <div class="nav-right ms-4 d-flex gap-3">
+            <a href="SearchPage.html" class="search-icon"
+              ><i class="fa-solid fa-magnifying-glass"></i
+            ></a>
+            <div class="dropdown">
+              <a
+                class="user-icon dropdown-toggle"
+                id="userDropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-circle-user"></i>
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="userDropdown"
+                id="userDropdownMenu"
+              >
+                <!-- Dropdown items will be dynamically populated by JavaScript -->
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
 
-    <!-- Carousel Section (Unchanged, Matching Your Design) -->
+    <!-- Carousel Section (Unchanged) -->
     <div class="carousel-section">
       <div
         id="carouselExampleDark"
@@ -900,17 +922,47 @@
         </button>
       </div>
     </div>
+    <br /><br />
+    <div class="container my-4">
+      <i class="fa-solid fa-mobile-screen-button mb-3 fw-bolder"></i>
+      <span class="fw-bolder">Prepaid Plan</span>
 
-    <!-- User’s Current Plan (Placeholder, Hold for Now) -->
-    <div class="current-plan">
-      <h2>Your Current Plan</h2>
+      <div id="current-plan-card" class="custom-card shadow-sm">
+        <div class="row g-0">
+          <!-- Left Column: Data and Validity -->
+          <div class="col-md-6 custom-plan-left border-end-custom">
+            <div class="p-3">
+              <p class="custom-text">
+                <strong>Data:</strong> <span id="plan-data"></span>
+              </p>
+              <p class="custom-text">
+                <strong>Validity:</strong> <span id="plan-validity"></span>
+              </p>
+            </div>
+          </div>
+          <!-- Right Column: Plan Name, Calls, SMS -->
+          <div class="col-md-6 custom-plan-right">
+            <div class="p-3">
+              <p class="custom-text">
+                <strong>Plan Name:</strong> <span id="plan-name"></span>
+              </p>
+              <p class="custom-text">
+                <strong>Calls:</strong> <span id="plan-calls"></span>
+              </p>
+              <p class="custom-text">
+                <strong>SMS:</strong> <span id="plan-sms"></span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <br /><br /><br />
+    <br /><br />
 
-    <!-- Enhanced Recommended Plans with LoginUser.html Card Design -->
+    <!-- Enhanced Recommended Plans -->
     <div class="recommended-plans">
       <h2>Recommended Plans for You</h2>
-      <br><br>
+      <br /><br />
       <div class="recommended-card-container">
         <div class="recommended-card">
           <p class="recommended-card-title">Popular Plan - 2 GB/day</p>
@@ -961,12 +1013,13 @@
     </div>
     <br /><br />
 
-    <!-- Updated Featured Plans (One Card Per Row, Positioned Left/Right, Subtle #B5FFE1 Background) -->
+    <!-- Updated Featured Plans -->
     <div class="featured-plans">
-      <h2>Featured Plans</h2><br><br>
+      <h2>Featured Plans</h2>
+      <br /><br />
       <br />
       <div class="featured-card-container">
-        <!-- Student Plan (Near Left Margin) -->
+        <!-- Student Plan -->
         <div class="featured-card featured-card-left">
           <img
             src="Assets/Images/2148888839.jpg"
@@ -990,7 +1043,7 @@
           </div>
         </div>
         <br />
-        <!-- IT Professional Plan (Near Right Margin) -->
+        <!-- IT Professional Plan -->
         <div class="featured-card featured-card-right">
           <img
             src="Assets/Images/2149241221.jpg"
@@ -1014,7 +1067,7 @@
           </div>
         </div>
         <br />
-        <!-- Festivals/Entertainment Plan (Near Left Margin) -->
+        <!-- Festivals/Entertainment Plan -->
         <div class="featured-card featured-card-left">
           <img
             src="Assets/Images/65392.jpg"
@@ -1042,7 +1095,7 @@
     <br />
     <br />
 
-    <!-- Coverage Section with Centered Map, Closing Icon, and Hover Effects -->
+    <!-- Coverage Section -->
     <div class="coverage-section">
       <h2 class="coverage-title">Our Network Coverage</h2>
       <p class="coverage-text">
@@ -1058,7 +1111,12 @@
         <img
           id="coverage-image"
           src="Assets/Images/Indiamap.jpg"
-          style="display: none; margin-top: 10px; width: 50%; border-radius: 10px"
+          style="
+            display: none;
+            margin-top: 10px;
+            width: 50%;
+            border-radius: 10px;
+          "
         />
       </div>
       <button class="coverage-button" onclick="showImage()">
@@ -1066,49 +1124,171 @@
       </button>
     </div>
 
-    <!-- Updated Footer (Default) -->
-    <footer>
-      <div class="footer-container">
-        <div class="footer-column">
-          <h5>Quick Links</h5>
-          <p><a href="Aboutuspage.html">About Us</a></p>
-          <p><a href="FAQsPage.html">FAQs</a></p>
-          <p><a href="MyAccount.html">My Account</a></p>
-          <p><a href="https://commonsupportcentre.com/">Support</a></p>
-        </div>
-        <div class="footer-column">
-          <h5>Mobi-Comm</h5>
-          <p>
-            Empowering connections with fast recharges and reliable service.
-          </p>
-          <div class="social-icons">
-            <a href="https://www.instagram.com/yourusername" target="_blank"
-              ><i class="fab fa-instagram"></i
-            ></a>
-            <a href="https://www.facebook.com/yourusername" target="_blank"
-              ><i class="fab fa-facebook"></i
-            ></a>
-            <a href="https://www.twitter.com/yourusername" target="_blank"
-              ><i class="fab fa-twitter"></i
-            ></a>
-            <a href="https://www.youtube.com/yourchannel" target="_blank"
-              ><i class="fab fa-youtube"></i
-            ></a>
-            <a href="https://www.linkedin.com/in/yourprofile" target="_blank"
-              ><i class="fab fa-linkedin"></i
-            ></a>
+    <!-- Footer (Copied from LoginPage.html) -->
+    <footer class="footer">
+      <button id="backToTopBtn" title="Go to top">
+        <i class="fa-solid fa-chevron-up"></i>
+      </button>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <h5>Mobi-Comm Service Limited</h5>
+            <p>
+              Mobi-Comm, a mobile service provider in India, offers voice and
+              data services across 2G, 3G, and 4G networks under its prepaid
+              mobile plans.
+            </p>
+            <div class="social-icons">
+              <a href="https://www.instagram.com/yourusername" target="_blank"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://www.facebook.com/yourusername" target="_blank"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a href="https://www.twitter.com/yourusername" target="_blank"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="https://www.youtube.com/yourchannel" target="_blank"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a href="https://www.linkedin.com/in/yourprofile" target="_blank"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="Aboutuspage.html">About Us</a></li>
+              <li><a href="FAQsPage.html">FAQs</a></li>
+              <li><a href="MyAccount.html">My Account</a></li>
+              <li><a href="https://commonsupportcentre.com/">Support</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h5>Contact Us</h5>
+            <p>Mobi-Comm Headquarters</p>
+            <p>123 Telecom Street, Tech City, India - 560001</p>
+            <p><strong>Phone:</strong> +91 9876543210</p>
+          </div>
+          <div class="col-md-4 text-center">
+            <h5>Download Mobi-Comm</h5>
+            <a href="AppLaunch.html" target="_blank">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/512px-Google_Play_Store_badge_EN.svg.png"
+                alt="Google Play"
+                class="download-btn"
+              />
+            </a>
+            <a href="AppLaunch.html" target="_blank">
+              <img
+                src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                alt="App Store"
+                class="download-btn"
+              />
+            </a>
           </div>
         </div>
-        <div class="footer-column">
-          <h5>Contact Us</h5>
-          <p>Mobi-Comm Headquarters</p>
-          <p>123 Telecom Street, Tech City, India - 560001</p>
-          <p>Phone: +91 9876543210</p>
-        </div>
+        <div class="footer-bottom">© 2025 Mobi-Comm. All Rights Reserved.</div>
       </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+      // Function to update navbar based on authentication state
+      function updateNavbar() {
+        const jwt = sessionStorage.getItem("jwt");
+        const dropdownMenu = document.getElementById("userDropdownMenu");
+
+        // Clear existing dropdown items
+        dropdownMenu.innerHTML = "";
+
+        if (!jwt) {
+          // Unauthenticated state: Show only "Log In"
+          dropdownMenu.innerHTML = `
+            <li><a class="dropdown-item" href="LoginPage.html">Log In</a></li>
+          `;
+        } else {
+          // Authenticated state: Show "Log Out" and "My Account"
+          dropdownMenu.innerHTML = `
+            <li><a class="dropdown-item" href="#" onclick="logout()">Log Out</a></li>
+            <li><a class="dropdown-item" href="MyAccount.html">My Account</a></li>
+          `;
+        }
+      }
+
+      // Logout function
+      function logout() {
+        sessionStorage.clear();
+        window.location.href = "LoginPage.html";
+      }
+
+      // Function to show toast messages (copied from LoginPage.html)
+      function showToast(message, delay, bgColor = "#1E90FF") {
+        const toastContainer = document.getElementById("toast-container");
+        const toast = document.createElement("div");
+        toast.className = `toast align-items-center border-0`;
+        toast.style.backgroundColor = bgColor;
+        toast.style.color = "white";
+        toast.innerHTML = `
+          <div class="d-flex">
+              <div class="toast-body">${message}</div>
+              <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close" style="filter: invert(1);"></button>
+          </div>
+        `;
+        toastContainer.appendChild(toast);
+        var bsToast = new bootstrap.Toast(toast, {
+          delay: delay,
+          autohide: true,
+        });
+        bsToast.show();
+        toast.addEventListener("hidden.bs.toast", () => toast.remove());
+      }
+
+      // Initial call to update navbar
+      updateNavbar();
+      document.addEventListener("DOMContentLoaded", function () {
+        // Retrieve token and mobile number from sessionStorage
+        const token = sessionStorage.getItem("jwt");
+        const mobile = sessionStorage.getItem("mobile");
+
+        if (!token || !mobile) {
+          alert("Please log in first.");
+          window.location.href = "login.html";
+          return;
+        }
+
+        // Fetch user details (including current plan) from the API
+        fetch(`http://localhost:9090/api/user/me?mobileNumber=${mobile}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+          .then((response) => response.json())
+          .then((user) => {
+            // Check if user plan exists
+            if (user.plan) {
+              document.getElementById("plan-data").innerText =
+                user.plan.planData || "N/A";
+              document.getElementById("plan-validity").innerText = user.plan
+                .validityDays
+                ? user.plan.validityDays + " days"
+                : "N/A";
+              document.getElementById("plan-name").innerText =
+                user.plan.planName || "N/A";
+              // You can use actual values if available or set default values
+              document.getElementById("plan-calls").innerText =
+                user.plan.calls || "Unlimited";
+              document.getElementById("plan-sms").innerText =
+                user.plan.sms || "100 SMS/day";
+            } else {
+              document.getElementById("current-plan-card").innerHTML =
+                "<p>No current plan found.</p>";
+            }
+          })
+          .catch((error) =>
+            console.error("Error fetching user details:", error)
+          );
+      });
+
       function showImage() {
         document.getElementById("coverage-image").style.display = "block";
       }
@@ -1116,7 +1296,10 @@
       function hideImage() {
         document.getElementById("coverage-image").style.display = "none";
       }
+
+      document.getElementById("backToTopBtn").addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

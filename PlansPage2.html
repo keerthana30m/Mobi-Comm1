@@ -11,11 +11,12 @@
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
     <link
       href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Orbitron:wght@700&display=swap"
       rel="stylesheet"
     />
-
     <style>
       /* Base Styles */
       * {
@@ -27,54 +28,52 @@
         font-family: "Cabin", sans-serif;
         font-size: 18px;
         background-color: #f5f6fa;
-        margin: 20px;
+        margin: 0;
       }
 
-      /* Navbar Styles (Mobi-Comm Default) */
+      /* Navbar Styles (Copied from LoginPage.html) */
       .navbar {
+        background-color: #157a6e;
+        padding: 8px 20px;
         position: fixed;
         top: 0;
         width: 100%;
-        background-color: #157a6e;
-        padding: 10px 30px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         z-index: 1000;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       }
-
       .navbar-brand {
         font-family: "Orbitron", sans-serif;
         font-size: 28px;
         font-weight: 700;
-        color: #f6af65;
+        color: #fff;
         text-transform: uppercase;
         letter-spacing: 2px;
-        text-shadow: none;
-        animation: none;
+        text-shadow: 0 0 10px rgba(246, 175, 101, 0.8);
+        animation: glow 2s infinite alternate;
         transition: transform 0.3s ease, color 0.3s ease;
       }
-
+      @keyframes glow {
+        0% {
+          text-shadow: 0 0 10px rgba(246, 175, 101, 0.8);
+        }
+        100% {
+          text-shadow: 0 0 20px rgba(246, 175, 101, 1),
+            0 0 30px rgba(181, 255, 225, 0.5);
+        }
+      }
       .navbar-brand:hover {
         transform: scale(1.05);
-        color: #b5ffe1;
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 40px;
-      }
-
-      .nav-links a {
         color: #f6af65;
-        font-size: 18px;
-        font-weight: 500;
+      }
+      .nav-links a {
+        color: #fff;
+        font-size: 17px;
+        font-weight: 350;
         text-decoration: none;
         position: relative;
         transition: color 0.3s ease;
+        margin: 0 15px;
       }
-
       .nav-links a::after {
         content: "";
         position: absolute;
@@ -82,75 +81,137 @@
         height: 2px;
         bottom: -5px;
         left: 0;
-        background-color: #b5ffe1;
+        background-color: #fff;
         transition: width 0.3s ease;
       }
-
       .nav-links a:hover::after {
         width: 100%;
       }
-
       .nav-links a:hover {
-        color: #b5ffe1;
+        color: #f6af65;
+        transform: scale(1.05);
+      }
+      .nav-right .search-icon,
+      .nav-right .user-icon {
+        font-size: 20px;
+        color: #fff;
+        margin: 0 10px;
+      }
+      .nav-right .search-icon:hover,
+      .nav-right .user-icon:hover {
+        color: #f6af65;
+        transform: scale(1.05);
+      }
+      .dropdown-menu {
+        background-color: #fff;
+        border: none;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+      }
+      .dropdown-item {
+        color: #157a6e;
+        font-size: 16px;
+        padding: 5px 10px;
+      }
+      .dropdown-item:hover {
+        background-color: #f6af65;
+        color: #fff;
       }
 
-      .nav-right {
-        display: flex;
+      /* Footer Styles (Copied from LoginPage.html) */
+      .footer {
+        background-color: #157a6e;
+        color: white;
+        padding: 40px 0;
+        margin-top: 50px;
+        position: relative;
+      }
+      .footer h5 {
+        font-weight: bold;
+        color: #f6af65;
+      }
+      .footer a {
+        color: white;
+        text-decoration: none;
+      }
+      .footer a:hover {
+        text-decoration: underline;
+      }
+      .social-icons a {
+        display: inline-flex;
         align-items: center;
-        gap: 20px;
-      }
-
-      .profile-icon {
+        justify-content: center;
         width: 40px;
         height: 40px;
-        background: #f6af65;
+        margin: 5px;
+        border: 1px solid white;
         border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #157a6e;
-        font-size: 20px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: transform 0.3s ease, background 0.3s ease;
+        color: white;
+        text-decoration: none;
+      }
+      .social-icons a:hover {
+        background-color: #f6af65;
+      }
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 225, 0.2);
+        margin-top: 20px;
+        padding-top: 10px;
+        text-align: center;
+      }
+      .download-btn {
+        width: 150px;
+        margin: 10px;
+        transition: transform 0.2s ease-in-out;
+      }
+      .download-btn:hover {
+        transform: scale(1.1);
       }
 
-      .profile-icon:hover {
-        transform: rotate(360deg);
-        background: #bc4749;
-      }
-
-      /* Shining Line Below Navbar */
-      .navbar::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 5px;
-        background: linear-gradient(90deg, transparent, #134732, transparent);
-        animation: shine 3s infinite linear;
-      }
-
-      @keyframes shine {
-        0% {
-          transform: translateX(-100%);
+      /* Responsive Design for Navbar and Footer */
+      @media (max-width: 768px) {
+        .navbar {
+          padding: 10px;
         }
-        100% {
-          transform: translateX(100%);
+        .nav-links {
+          display: none;
+        }
+        .nav-links.active {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 60px;
+          left: 0;
+          width: 100%;
+          background-color: #157a6e;
+          padding: 10px 0;
+        }
+        .nav-links a {
+          margin: 10px 20px;
+        }
+        .nav-right {
+          gap: 10px;
+        }
+        .footer-container {
+          flex-direction: column;
+          text-align: center;
+        }
+        .footer-column {
+          margin-bottom: 20px;
+        }
+        .social-icons a {
+          margin: 5px 5px;
         }
       }
 
-      /* Horizontal Nav Bar (Styled for Mobi-Comm) */
+      /* Existing Styles (Unchanged) */
       .nav-container {
         background: #ffffff;
         padding: 15px 0;
         border-radius: 12px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         max-width: 1200px;
-        margin-bottom: 40px;
+        margin: 80px auto 40px; /* Adjusted for fixed navbar */
       }
-
       .nav-pills .nav-link {
         color: #157a6e !important;
         border-radius: 8px;
@@ -163,28 +224,23 @@
           border-color 0.3s ease;
         animation: fadeIn 1s ease-out;
       }
-
       .nav-pills .nav-link.active {
         background-color: #f6af65;
         color: #ffffff !important;
         border-color: #f6af65;
         box-shadow: 0 2px 10px rgba(246, 175, 101, 0.3);
       }
-
       .nav-pills .nav-link:hover {
         background-color: #b5ffe1;
         color: #157a6e !important;
         border-color: #b5ffe1;
         transform: translateY(-2px);
       }
-
-      /* Plan Card (Updated with Prepaid Recharge Design, 40:60 Ratio) */
       .plan-card-container {
         max-width: 1200px;
         margin: 50px auto;
         padding: 0 20px;
       }
-
       .plan-card {
         display: flex;
         background: #ffffff;
@@ -197,13 +253,10 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         animation: slideUp 1s ease-out;
       }
-
       .plan-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
       }
-
-      /* Left Section (Plan Name and Badge, 40% Width) */
       .plan-left {
         flex: 0 0 40%;
         padding: 12px;
@@ -215,7 +268,6 @@
         align-items: flex-start;
         position: relative;
       }
-
       .plan-left h3 {
         font-size: 16px;
         font-weight: 700;
@@ -224,7 +276,6 @@
         margin-bottom: 10px;
         animation: slideInLeft 1s ease-out;
       }
-
       .value-badge {
         position: absolute;
         top: 8px;
@@ -240,14 +291,11 @@
         transform: rotate(-10deg);
         transition: transform 0.3s ease, background-color 0.3s ease;
       }
-
       .value-badge:hover {
         transform: rotate(0deg) scale(1.1);
         background-color: #bc4749;
         color: #ffffff;
       }
-
-      /* Right Section (Price, Details, Buttons, 60% Width) */
       .plan-right {
         flex: 0 0 60%;
         width: 60%;
@@ -258,7 +306,6 @@
         justify-content: center;
         align-items: center;
       }
-
       .plan-price {
         font-size: 25px;
         font-weight: 700;
@@ -267,20 +314,17 @@
         text-align: center;
         animation: fadeIn 1s ease-in;
       }
-
       .plan-details {
         text-align: center;
         margin-bottom: 12px;
         padding: 2px;
       }
-
       .plan-details-row {
         display: flex;
         justify-content: center;
         gap: 30px;
         margin-bottom: 5px;
       }
-
       .plan-details-row p {
         font-size: 15px;
         color: #000000;
@@ -289,20 +333,16 @@
         align-items: center;
         animation: slideDown 0.5s ease-out;
       }
-
       .plan-details-row i {
         margin-right: 4px;
         font-size: 13px;
         color: #157a6e;
       }
-
-      /* Buttons */
       .plan-buttons {
         display: flex;
         justify-content: center;
         width: 100%;
       }
-
       .plan-button {
         padding: 8px 16px;
         border: none;
@@ -315,20 +355,16 @@
         width: 100px;
         text-align: center;
       }
-
       .buy-plan-btn {
         background-color: #157a6e;
         color: #ffffff;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
       }
-
       .buy-plan-btn:hover {
         background-color: #bc4749;
         transform: translateY(-2px);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
       }
-
-      /* Animations */
       @keyframes slideUp {
         from {
           opacity: 0;
@@ -339,7 +375,6 @@
           transform: translateY(0);
         }
       }
-
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -348,7 +383,6 @@
           opacity: 1;
         }
       }
-
       @keyframes slideInLeft {
         from {
           opacity: 0;
@@ -359,7 +393,6 @@
           transform: translateX(0);
         }
       }
-
       @keyframes slideDown {
         from {
           opacity: 0;
@@ -370,7 +403,6 @@
           transform: translateY(0);
         }
       }
-
       @keyframes bounceIn {
         from {
           opacity: 0;
@@ -382,78 +414,13 @@
         }
       }
 
-      /* Footer (Mobi-Comm Default) */
-      footer {
-        background-color: #157a6e;
-        color: #ffffff;
-        padding: 30px 0;
-        margin-top: 50px;
-      }
-
-      .footer-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-      }
-
-      .footer-column {
-        flex: 1;
-        padding: 0 20px;
-      }
-
-      .footer-column h5 {
-        font-size: 18px;
-        font-weight: 700;
-        margin-bottom: 15px;
-        color: #f6af65;
-      }
-
-      .footer-column p,
-      .footer-column a {
-        font-size: 14px;
-        color: #ffffff;
-        text-decoration: none;
-        margin-bottom: 10px;
-        line-height: 1.5;
-        transition: color 0.3s ease;
-      }
-
-      .footer-column a:hover {
-        color: #b5ffe1;
-      }
-
-      .social-icons {
-        margin-top: 15px;
-      }
-
-      .social-icons a {
-        color: #ffffff;
-        font-size: 20px;
-        margin-right: 15px;
-        transition: color 0.3s ease, transform 0.3s ease;
-      }
-
-      .social-icons a:hover {
-        color: #f6af65;
-        transform: scale(1.1);
-      }
-
-      /* Responsive Design */
+      /* Responsive Design for Existing Content */
       @media (max-width: 768px) {
-        .navbar {
-          padding: 10px 15px;
-        }
-        .nav-links {
-          gap: 20px;
-        }
         .nav-container {
-          margin: 60px auto 20px;
-          padding: 10px 0;
+          margin: 70px auto 20px;
         }
         .nav-pills .nav-link {
-          padding: 8px 15px;
+          padding: 8px 10px;
           font-size: 14px;
         }
         .plan-card {
@@ -484,33 +451,88 @@
           margin: 0 auto 8px;
           transform: rotate(0deg);
         }
-        .footer-container {
-          flex-direction: column;
-          text-align: center;
-        }
-        .footer-column {
-          padding: 10px 0;
-        }
+      }
+
+      /* Filter Button Styles */
+      .filter-btn {
+        background-color: #157a6e;
+        color: #ffffff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+      .filter-btn:hover {
+        background-color: #bc4749;
+        transform: translateY(-2px);
       }
     </style>
   </head>
   <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-      <div class="navbar-brand">Mobi-Comm</div>
-      <div class="nav-links">
-        <a href="Homepage.html">Home</a>
-        <a href="PlansPage2.html">Plans</a>
-        <a href="Aboutuspage.html">About Us</a>
-      </div>
-      <div class="nav-right">
-        <div class="profile-icon" title="User Profile">K</div>
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- Navbar (Updated for Authentication State) -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="Homepage.html">Mobi-Comm</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <div class="nav-links ms-auto d-flex gap-4">
+            <a href="Homepage.html">Home</a>
+            <a href="PlansPage2.html">Plans</a>
+            <a href="Aboutuspage.html">About Us</a>
+          </div>
+          <div class="nav-right ms-4 d-flex gap-3">
+            <a href="SearchPage.html" class="search-icon"
+              ><i class="fa-solid fa-magnifying-glass"></i
+            ></a>
+            <div class="dropdown">
+              <a
+                class="user-icon dropdown-toggle"
+                id="userDropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-circle-user"></i>
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="userDropdown"
+                id="userDropdownMenu"
+              >
+                <!-- Dropdown items will be dynamically populated by JavaScript -->
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
 
-    <h3 class="text-center display-6 text-secondary mt-5 py-5">
-      <b></b>Plans for you !
-    </h3>
+    <!-- Filter Button -->
+    <div class="container text-end mb-3">
+      <button
+        class="filter-btn"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#filterOffcanvas"
+      >
+        Filter Plans
+      </button>
+    </div>
 
     <!-- Plans with Horizontal Nav Tabs -->
     <div class="container">
@@ -523,9 +545,9 @@
           <button
             class="nav-link active"
             data-bs-toggle="pill"
-            data-bs-target="#popular"
+            data-bs-target="#true5g"
           >
-            Popular
+            True 5G
           </button>
           <button
             class="nav-link"
@@ -558,10 +580,17 @@
           >
             Annual
           </button>
+          <button
+            class="nav-link"
+            data-bs-toggle="pill"
+            data-bs-target="#topup"
+          >
+            Top-up
+          </button>
         </div>
       </div>
       <div class="tab-content">
-        <div class="tab-pane fade show active" id="popular">
+        <div class="tab-pane fade show active" id="true5g">
           <div class="row"></div>
         </div>
         <div class="tab-pane fade" id="validity">
@@ -579,55 +608,194 @@
         <div class="tab-pane fade" id="annual">
           <div class="row"></div>
         </div>
+        <div class="tab-pane fade" id="topup">
+          <div class="row"></div>
+        </div>
       </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-      <div class="footer-container">
-        <div class="footer-column">
-          <h5>Quick Links</h5>
-          <p><a href="Aboutuspage.html">About Us</a></p>
-          <p><a href="FAQsPage.html">FAQs</a></p>
-          <p><a href="MyAccount.html">My Account</a></p>
-          <p><a href="https://commonsupportcentre.com/">Support</a></p>
+    <!-- Filter Offcanvas -->
+    <div
+      class="offcanvas offcanvas-end"
+      tabindex="-1"
+      id="filterOffcanvas"
+      aria-labelledby="filterOffcanvasLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="filterOffcanvasLabel">Filter Plans</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body filter-section">
+        <div class="mb-4">
+          <label for="priceRange">Price (₹50 - ₹5000)</label>
+          <input
+            type="range"
+            id="priceRange"
+            min="50"
+            max="5000"
+            value="5000"
+          />
+          <div class="range-value" id="priceValue">₹5000</div>
         </div>
-        <div class="footer-column">
-          <h5>Mobi-Comm</h5>
-          <p>
-            Empowering connections with fast recharges and reliable service.
-          </p>
-          <div class="social-icons">
-            <a href="https://www.instagram.com/yourusername" target="_blank"
-              ><i class="fab fa-instagram"></i
-            ></a>
-            <a href="https://www.facebook.com/yourusername" target="_blank"
-              ><i class="fab fa-facebook"></i
-            ></a>
-            <a href="https://www.twitter.com/yourusername" target="_blank"
-              ><i class="fab fa-twitter"></i
-            ></a>
-            <a href="https://www.youtube.com/yourchannel" target="_blank"
-              ><i class="fab fa-youtube"></i
-            ></a>
-            <a href="https://www.linkedin.com/in/yourprofile" target="_blank"
-              ><i class="fab fa-linkedin"></i
-            ></a>
+        <div class="mb-4">
+          <label for="dataRange">Data (1GB - 100GB)</label>
+          <input type="range" id="dataRange" min="1" max="100" value="100" />
+          <div class="range-value" id="dataValue">100GB</div>
+        </div>
+        <div class="mb-4">
+          <label for="validityRange">Validity (1 - 365 days)</label>
+          <input
+            type="range"
+            id="validityRange"
+            min="1"
+            max="365"
+            value="365"
+          />
+          <div class="range-value" id="validityValue">365 days</div>
+        </div>
+        <div class="mb-4">
+          <label for="sortSelect">Sort By</label>
+          <select id="sortSelect" class="form-select">
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="data-asc">Data: Low to High</option>
+            <option value="data-desc">Data: High to Low</option>
+            <option value="validity-asc">Validity: Low to High</option>
+            <option value="validity-desc">Validity: High to Low</option>
+          </select>
+        </div>
+        <button class="filter-btn w-100" onclick="applyFilters()">
+          Apply Filters
+        </button>
+      </div>
+    </div>
+
+    <!-- Footer (Copied from LoginPage.html) -->
+    <footer class="footer">
+      <button id="backToTopBtn" title="Go to top">
+        <i class="fa-solid fa-chevron-up"></i>
+      </button>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <h5>Mobi-Comm Service Limited</h5>
+            <p>
+              Mobi-Comm, a mobile service provider in India, offers voice and
+              data services across 2G, 3G, and 4G networks under its prepaid
+              mobile plans.
+            </p>
+            <div class="social-icons">
+              <a href="https://www.instagram.com/yourusername" target="_blank"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="https://www.facebook.com/yourusername" target="_blank"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a href="https://www.twitter.com/yourusername" target="_blank"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="https://www.youtube.com/yourchannel" target="_blank"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a href="https://www.linkedin.com/in/yourprofile" target="_blank"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="Aboutuspage.html">About Us</a></li>
+              <li><a href="FAQsPage.html">FAQs</a></li>
+              <li><a href="MyAccount.html">My Account</a></li>
+              <li><a href="https://commonsupportcentre.com/">Support</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h5>Contact Us</h5>
+            <p>Mobi-Comm Headquarters</p>
+            <p>123 Telecom Street, Tech City, India - 560001</p>
+            <p><strong>Phone:</strong> +91 9876543210</p>
+          </div>
+          <div class="col-md-4 text-center">
+            <h5>Download Mobi-Comm</h5>
+            <a href="AppLaunch.html" target="_blank">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/512px-Google_Play_Store_badge_EN.svg.png"
+                alt="Google Play"
+                class="download-btn"
+              />
+            </a>
+            <a href="AppLaunch.html" target="_blank">
+              <img
+                src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                alt="App Store"
+                class="download-btn"
+              />
+            </a>
           </div>
         </div>
-        <div class="footer-column">
-          <h5>Contact Us</h5>
-          <p>Mobi-Comm Headquarters</p>
-          <p>123 Telecom Street, Tech City, India - 560001</p>
-          <p>Phone: +91 9876543210</p>
-        </div>
+        <div class="footer-bottom">© 2025 Mobi-Comm. All Rights Reserved.</div>
       </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-      // Function to load plans
+      // Toast Container Setup
+      function showToast(message, delay, bgColor = "#157a6e") {
+        const toastContainer = document.getElementById("toast-container");
+        const toast = document.createElement("div");
+        toast.className = "toast align-items-center border-0";
+        toast.style.backgroundColor = bgColor;
+        toast.style.color = "white";
+        toast.innerHTML = `
+                <div class="d-flex">
+                    <div class="toast-body">${message}</div>
+                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close" style="filter: invert(1);"></button>
+                </div>
+            `;
+        toastContainer.appendChild(toast);
+        var bsToast = new bootstrap.Toast(toast, {
+          delay: delay,
+          autohide: true,
+        });
+        bsToast.show();
+        toast.addEventListener("hidden.bs.toast", () => toast.remove());
+      }
+      // Navbar Update Function
+      function updateNavbar() {
+        const jwt = localStorage.getItem("jwt");
+        const dropdownMenu = document.getElementById("userDropdownMenu");
+        dropdownMenu.innerHTML = "";
+        if (!jwt) {
+          dropdownMenu.innerHTML = `
+        <li><a class="dropdown-item" href="LoginPage.html">Log In</a></li>
+      `;
+        } else {
+          dropdownMenu.innerHTML = `
+        <li><a class="dropdown-item" href="LoginUser.html" onclick="logout()">Log Out</a></li>
+        <li><a class="dropdown-item" href="MyAccount.html">My Account</a></li>
+      `;
+        }
+      }
+
+      // Logout Function
+      function logout() {
+        localStorage.removeItem("jwt");
+        showToast("Logged out successfully!", 3000, "#157a6e");
+        setTimeout(() => (window.location.href = "LoginPage.html"), 2000);
+      }
+
+      document.addEventListener("DOMContentLoaded", updateNavbar);
+
+      let allPlans = {};
+
       function loadPlans(endpoint, containerId) {
         fetch(endpoint)
           .then((response) => {
@@ -639,88 +807,230 @@
             return response.json();
           })
           .then((data) => {
-            console.log(`Data from ${endpoint}:`, data); // Debug log
-            const rowContainer = document.querySelector(`#${containerId} .row`);
-            let html = "";
-            data.forEach((plan) => {
-              const priceWithRupee = `₹${plan.price.replace("₹", "")}`;
-              const badge = plan.plan_name.includes("Best Value")
-                ? "Best Value"
-                : plan.plan_name.includes("Limited Offer")
-                ? "Limited Offer"
-                : plan.plan_name.includes("Exclusive")
-                ? "Exclusive"
-                : plan.plan_name.includes("Popular")
-                ? "Popular"
-                : "";
-              html += `
-              <div class="col-md-6 col-sm-12 mb-4">
-                <div class="plan-card" style="width:600px">
-                  <div class="plan-left">
-                    <h3>${plan.plan_name || "Plan"}</h3>
-                    ${badge ? `<div class="value-badge">${badge}</div>` : ""}
-                  </div>
-                  <div class="plan-right">
-                    <div class="plan-price">${priceWithRupee}</div>
-                    <div class="plan-details">
-                      <div class="plan-details-row">
-                        <p ><i class="fas fa-cloud"></i> <strong>Data:</strong> ${
-                          plan.data || "N/A"
-                        }</p>
-                        <p><i class="fas fa-calendar-alt"></i> <strong>Validity:</strong> ${
-                          plan.validity || "N/A"
-                        }</p>
-                      </div>
-                      <div class="plan-details-row">
-                        <p><i class="fas fa-phone"></i> <strong>Calls:</strong> ${
-                          plan.features &&
-                          plan.features.includes("Unlimited Calls")
-                            ? "Unlimited"
-                            : "N/A"
-                        }</p>
-                        <p><i class="fas fa-sms"></i> <strong>SMS:</strong> ${
-                          plan.features &&
-                          plan.features.some((f) => f.includes("SMS"))
-                            ? plan.features.find((f) => f.includes("SMS")) ||
-                              "N/A"
-                            : "N/A"
-                        }</p>
-                      </div>
-                    </div>
-                    <div class="plan-buttons">
-                      <button class="plan-button buy-plan-btn" onclick="buyPlan('${priceWithRupee}', '${
-                plan.plan_name || "Plan"
-              }', '${plan.buy_now_url}')">Buy Plan</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            `;
-            });
-            if (rowContainer) {
-              rowContainer.innerHTML = html;
-            }
+            console.log(`Data from ${endpoint}:`, data);
+            allPlans[containerId] = data;
+            renderPlans(containerId, data);
           })
           .catch((error) => {
             console.error("Error loading plans from " + endpoint, error);
           });
       }
 
-      function buyPlan(price, planName, url) {
-        alert(
-          `Proceeding to purchase ${planName} for ${price}. Redirecting to payment page...`
-        );
-        window.location.href = url;
+      function renderPlans(containerId, data) {
+        const rowContainer = document.querySelector(`#${containerId} .row`);
+        let html = "";
+        data.forEach((plan) => {
+          const priceWithRupee = "₹" + plan.planPrice.toFixed(2);
+          const badge = plan.planName.includes("Best Value")
+            ? "Best Value"
+            : plan.planName.includes("Limited Offer")
+            ? "Limited Offer"
+            : plan.planName.includes("Exclusive")
+            ? "Exclusive"
+            : plan.planName.includes("Popular")
+            ? "Popular"
+            : "";
+          html += `
+        <div class="col-md-6 col-sm-12 mb-4">
+          <div class="plan-card" style="width:600px">
+            <div class="plan-left">
+              <h3>${plan.planName || "Plan"}</h3>
+              ${badge ? `<div class="value-badge">${badge}</div>` : ""}
+            </div>
+            <div class="plan-right">
+              <div class="plan-price">${priceWithRupee}</div>
+              <div class="plan-details">
+                <div class="plan-details-row">
+                  <p><i class="fas fa-cloud"></i> <strong>Data:</strong> ${
+                    plan.planData || "N/A"
+                  }</p>
+                  <p><i class="fas fa-calendar-alt"></i> <strong>Validity:</strong> ${
+                    plan.validityDays ? plan.validityDays + " days" : "N/A"
+                  }</p>
+                </div>
+                <div class="plan-details-row">
+                  <p><i class="fas fa-phone"></i> <strong>Calls:</strong> ${
+                    plan.features && plan.features.includes("Unlimited Calls")
+                      ? "Unlimited"
+                      : "N/A"
+                  }</p>
+                  <p><i class="fas fa-sms"></i> <strong>SMS:</strong> ${
+                    (plan.features &&
+                      plan.features
+                        .split(", ")
+                        .find((f) => f.includes("SMS"))) ||
+                    "N/A"
+                  }</p>
+                </div>
+              </div>
+              <div class="plan-buttons">
+                <button class="plan-button buy-plan-btn" onclick="buyPlan('${
+                  plan.planId
+                }', '${plan.planPrice}')">Buy Plan</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+        });
+        if (rowContainer) {
+          rowContainer.innerHTML = html;
+        }
       }
 
-      // Load plans on DOM content loaded
+      // Razorpay Integration with Updated Initiate and Verify Flow
+      function showToast(message, delay, bgColor = "#157a6e") {
+        const toastContainer = document.getElementById("toast-container");
+        const toast = document.createElement("div");
+        toast.className = "toast align-items-center border-0";
+        toast.style.backgroundColor = bgColor;
+        toast.style.color = "white";
+        toast.innerHTML = `
+                <div class="d-flex">
+                    <div class="toast-body">${message}</div>
+                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close" style="filter: invert(1);"></button>
+                </div>
+            `;
+        toastContainer.appendChild(toast);
+        var bsToast = new bootstrap.Toast(toast, {
+          delay: delay,
+          autohide: true,
+        });
+        bsToast.show();
+        toast.addEventListener("hidden.bs.toast", () => toast.remove());
+      }
+
+      function buyPlan(planId, planPrice) {
+        const jwt = sessionStorage.getItem("jwt");
+        const userId = sessionStorage.getItem("userId");
+        const username = sessionStorage.getItem("username");
+        const email = sessionStorage.getItem("email");
+        const mobileNumber = sessionStorage.getItem("mobile");
+
+        if (!jwt) {
+          showToast("Please log in to proceed with payment!", 3000, "#bc4749");
+          setTimeout(() => (window.location.href = "LoginPage.html"), 2000);
+          return;
+        }
+
+        const options = {
+          key: "rzp_test_JTFjJqHQh7QfNb",
+          amount: planPrice * 100,
+          currency: "INR",
+          name: "Mobi-Comm",
+          description: `Plan Recharge: ${planId}`,
+          handler: function (response) {
+            fetch("http://localhost:9090/api/recharge/process", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + jwt,
+              },
+              body: JSON.stringify({
+                userId: userId,
+                planId: planId,
+                mobileNumber: mobileNumber,
+                paymentId: response.razorpay_payment_id,
+                paymentMethod: "UPI",
+              }),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                showToast(
+                  data.message || "Recharge successful!",
+                  5000,
+                  "#157a6e"
+                );
+              })
+              .catch((error) => {
+                showToast("Recharge processing failed", 5000, "#bc4749");
+              });
+          },
+          prefill: { name: username, email: email, contact: mobileNumber },
+          theme: { color: "#157a6e" },
+        };
+
+        const rzp = new Razorpay(options);
+        rzp.open();
+
+        rzp.on("payment.failed", function (response) {
+          showToast(
+            `Payment Failed! Error: ${response.error.description}`,
+            5000,
+            "#bc4749"
+          );
+        });
+      }
+
+      // Range input event listeners for filters
+      document
+        .getElementById("priceRange")
+        .addEventListener("input", function () {
+          document.getElementById("priceValue").textContent = "₹" + this.value;
+        });
+      document
+        .getElementById("dataRange")
+        .addEventListener("input", function () {
+          document.getElementById("dataValue").textContent = this.value + "GB";
+        });
+      document
+        .getElementById("validityRange")
+        .addEventListener("input", function () {
+          document.getElementById("validityValue").textContent =
+            this.value + " days";
+        });
+
+      function applyFilters() {
+        const priceMax = parseInt(document.getElementById("priceRange").value);
+        const dataMax = parseInt(document.getElementById("dataRange").value);
+        const validityMax = parseInt(
+          document.getElementById("validityRange").value
+        );
+        const sortOption = document.getElementById("sortSelect").value;
+
+        Object.keys(allPlans).forEach((containerId) => {
+          let filteredPlans = allPlans[containerId].filter((plan) => {
+            const price = plan.planPrice;
+            const data = parseFloat(plan.planData) || 0;
+            const validity = plan.validityDays || 0;
+            return (
+              price <= priceMax && data <= dataMax && validity <= validityMax
+            );
+          });
+
+          filteredPlans.sort((a, b) => {
+            if (sortOption === "price-asc") return a.planPrice - b.planPrice;
+            if (sortOption === "price-desc") return b.planPrice - a.planPrice;
+            if (sortOption === "data-asc")
+              return (
+                (parseFloat(a.planData) || 0) - (parseFloat(b.planData) || 0)
+              );
+            if (sortOption === "data-desc")
+              return (
+                (parseFloat(b.planData) || 0) - (parseFloat(a.planData) || 0)
+              );
+            if (sortOption === "validity-asc")
+              return (a.validityDays || 0) - (b.validityDays || 0);
+            if (sortOption === "validity-desc")
+              return (b.validityDays || 0) - (a.validityDays || 0);
+          });
+
+          renderPlans(containerId, filteredPlans);
+        });
+      }
+
+      // Load plans when the document is ready
       document.addEventListener("DOMContentLoaded", function () {
-        loadPlans("http://localhost:5000/popular_plans", "popular");
-        loadPlans("http://localhost:5000/validity_plans", "validity");
-        loadPlans("http://localhost:5000/data_plans", "data");
-        loadPlans("http://localhost:5000/unlimited_plans", "unlimited");
-        loadPlans("http://localhost:5000/entertainment_plans", "entertainment");
-        loadPlans("http://localhost:5000/annual_plans", "annual");
+        loadPlans("http://localhost:9090/api/plans/true5g", "true5g");
+        loadPlans("http://localhost:9090/api/plans/validity", "validity");
+        loadPlans("http://localhost:9090/api/plans/data", "data");
+        loadPlans("http://localhost:9090/api/plans/unlimited", "unlimited");
+        loadPlans(
+          "http://localhost:9090/api/plans/entertainment",
+          "entertainment"
+        );
+        loadPlans("http://localhost:9090/api/plans/annual", "annual");
+        loadPlans("http://localhost:9090/api/plans/topup", "topup");
       });
     </script>
   </body>

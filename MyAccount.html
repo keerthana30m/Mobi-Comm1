@@ -1,207 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Account</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/main.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Orbitron:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        :root {
-            --primary: #157a6e; /* Mobi-Comm primary color */
-            --secondary: #f6af65; /* Mobi-Comm secondary color */
-            --accent: #b5ffe1; /* Mobi-Comm accent color */
-        }
+      :root {
+        --primary: #157a6e; /* Mobi-Comm primary color */
+        --secondary: #f6af65; /* Mobi-Comm secondary color */
+        --accent: #b5ffe1; /* Mobi-Comm accent color */
+      }
 
-        body {
-            background-color: #f5f6fa; /* Matches your theme background */
-            font-family: 'Cabin', sans-serif;
-        }
+      body {
+        background-color: #f5f6fa; /* Matches your theme background */
+      }
 
-        .account-container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-            margin: 40px auto; /* Centered with top/bottom margin */
-            max-width: 800px; /* Slightly wider for readability */
-        }
+      .account-container {
+        background-color: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        margin: 40px auto; /* Centered with top/bottom margin */
+        max-width: 800px; /* Slightly wider for readability */
+      }
 
-        .btn-custom {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            width: 100%;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
+      .btn-custom {
+        background-color: var(--primary);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        width: 100%;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
 
-        .btn-custom:hover {
-            background-color: var(--secondary);
-            transform: translateY(-2px);
-        }
+      .btn-custom:hover {
+        background-color: var(--secondary);
+        transform: translateY(-2px);
+      }
 
-        .form-label {
-            font-weight: bold;
-            color: var(--primary);
-        }
+      .form-label {
+        font-weight: lighter;
+      }
 
-        .form-control:focus {
-            border-color: var(--secondary);
-            box-shadow: 0 0 5px rgba(246, 175, 101, 0.5);
-        }
+      .form-control:focus {
+        border-color: var(--secondary);
+        box-shadow: 0 0 5px rgba(246, 175, 101, 0.5);
+      }
 
-        /* Back Navigation Bar */
-        .back-nav {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
+      /* Back Navigation Bar */
+      .back-nav {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
 
-        .back-icon {
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--primary);
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
+      .back-icon {
+        font-size: 2rem;
+        cursor: pointer;
+        color: red;
+        transition: color 0.3s ease, transform 0.3s ease;
+      }
 
-        .back-icon:hover {
-            color: var(--secondary);
-            transform: translateX(-5px);
-        }
+      .back-icon:hover {
+        transform: translateX(-5px);
+      }
 
-        /* Current Plan Section */
-        .plan-section {
-            margin-top: 40px;
-        }
+      /* Current Plan Section */
+      .plan-section {
+        margin-top: 40px;
+      }
 
-        .plan-title {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--secondary);
-            margin-bottom: 20px;
-        }
+      .plan-title {
+        font-size: 1.75rem;
+        font-weight: 700;
 
-        .plan-box {
-            background-color: var(--accent);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-        }
+        margin-bottom: 20px;
+      }
 
-        .plan-detail {
-            font-size: 1rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
+      .plan-box {
+        background-color: var(--accent);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+      }
 
-        /* Recharge History Section */
-        .history-section {
-            margin-top: 40px;
-        }
+      .plan-detail {
+        font-size: large;
 
-        .history-title {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--secondary);
-            margin-bottom: 20px;
-        }
+        margin-bottom: 10px;
+      }
 
-        .history-box {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-        }
+      /* Recharge History Section */
+      .history-section {
+        margin-top: 40px;
+      }
 
-        .history-item {
-            font-size: 1rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #e9ecef;
-        }
+      .history-title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
 
-        .history-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
+      .history-box {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .history-item {
+        font-size: large;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #e9ecef;
+      }
+
+      .history-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="account-container">
-        <!-- Back Navigation Bar -->
-        <div class="back-nav">
-            <span class="back-icon" onclick="window.location.href='Homepage.html'">←</span>
+      <!-- Back Navigation Bar -->
+      <div class="back-nav">
+        <span class="back-icon" onclick="window.location.href='Homepage.html'"
+          ><<</span
+        >
+      </div>
+
+      <!-- Account Details Form -->
+      <h2
+        class="text-center"
+        style="margin-bottom: 30px; text-decoration: underline"
+      >
+        My Account
+      </h2>
+      <form>
+        <div class="mb-3">
+          <label for="name" class="form-label">Name:</label>
+          <input type="text" class="form-control" id="name" value="" />
         </div>
 
-        <!-- Account Details Form -->
-        <h2 class="text-center" style="color: var(--primary); margin-bottom: 30px;">My Account</h2>
-        <form>
-            <div class="mb-3">
-                <label for="name" class="form-label">Name:</label>
-                <input type="text" class="form-control" id="name" value="John Doe">
-            </div>
-            <div class="mb-3">
-                <label for="dob" class="form-label">Date of Birth:</label>
-                <input type="date" class="form-control" id="dob" value="1990-01-01">
-            </div>
-            <div class="mb-3">
-                <label for="mobile" class="form-label">Registered Mobile Number:</label>
-                <input type="text" class="form-control" id="mobile" value="93611155275">
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email ID:</label>
-                <input type="email" class="form-control" id="email" value="john.doe@example.com">
-            </div>
-            <div class="mb-3">
-                <label for="address" class="form-label">Address:</label>
-                <textarea class="form-control" id="address" rows="3">123 Main Street, City, Country</textarea>
-            </div>
-            <button type="button" class="btn-custom" onclick="window.location.href='Homepage.html'">Save & Exit</button>
-        </form>
-
-        <!-- Current Plan Section -->
-        <div class="plan-section">
-            <h3 class="plan-title">Current Plan</h3>
-            <div class="plan-box">
-                <p class="plan-detail"><strong>Plan Name:</strong> Popular Plan - 2 GB/day</p>
-                <p class="plan-detail"><strong>Data:</strong> 2 GB/day</p>
-                <p class="plan-detail"><strong>Validity:</strong> 28 days (Expires: March 25, 2025)</p>
-                <p class="plan-detail"><strong>Calls:</strong> Unlimited</p>
-                <p class="plan-detail"><strong>SMS:</strong> 100 SMS/day</p>
-            </div>
+        <div class="mb-3">
+          <label for="mobile" class="form-label"
+            >Registered Mobile Number:</label
+          >
+          <input type="text" class="form-control" id="mobile" value="" />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email ID:</label>
+          <input type="email" class="form-control" id="email" value="" />
         </div>
 
-        <!-- Recharge History Section -->
-        <div class="history-section">
-            <h3 class="history-title">Recharge History</h3>
-            <div class="history-box">
-                <div class="history-item">
-                    <strong>Date:</strong> February 27, 2025<br>
-                    <strong>Plan:</strong> Popular Plan - 2 GB/day<br>
-                    <strong>Amount:</strong> ₹399<br>
-                    <strong>Payment Method:</strong> Credit Card
-                </div>
-                <div class="history-item">
-                    <strong>Date:</strong> January 30, 2025<br>
-                    <strong>Plan:</strong> Data Booster - 3 GB/day<br>
-                    <strong>Amount:</strong> ₹599<br>
-                    <strong>Payment Method:</strong> UPI
-                </div>
-                <div class="history-item">
-                    <strong>Date:</strong> December 15, 2024<br>
-                    <strong>Plan:</strong> Long Validity - 1.5 GB/day<br>
-                    <strong>Amount:</strong> ₹299<br>
-                    <strong>Payment Method:</strong> Debit Card
-                </div>
-            </div>
+        <button
+          type="button"
+          class="btn-custom"
+          onclick="window.location.href='Homepage.html'"
+        >
+          Save & Exit
+        </button>
+      </form>
+
+      <!-- Current Plan Section -->
+      <div class="plan-section">
+        <h3 class="plan-title">Current Plan</h3>
+        <div class="plan-box">
+          <p class="plan-detail">
+            📌 Plan Name :
+            <span
+              id="plan-name"
+              style="font-size: large; font-weight: 600"
+            ></span>
+          </p>
+          <p class="plan-detail">
+            📡 Data :
+            <span
+              id="plan-data"
+              style="font-size: large; font-weight: 600"
+            ></span>
+          </p>
+          <p class="plan-detail">
+            ⏳ Validity :
+            <span
+              id="plan-validity"
+              style="font-size: large; font-weight: 600"
+            ></span>
+          </p>
+          <p class="plan-detail">
+            📞 Calls :
+            <span
+              id="plan-calls"
+              style="font-size: large; font-weight: 600"
+            ></span>
+          </p>
+          <p class="plan-detail">
+            ✉️ SMS :
+            <span
+              id="plan-sms"
+              style="font-size: large; font-weight: 600"
+            ></span>
+          </p>
         </div>
+      </div>
+
+      <!-- Recharge History Section -->
+      <div class="history-section">
+        <h3 class="history-title">Recharge History</h3>
+        <div class="history-box" id="recharge-history"></div>
+      </div>
     </div>
-</body>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const userToken = sessionStorage.getItem("jwt"); // Assuming token is stored in sessionStorage
+        const mobileNumber = sessionStorage.getItem("mobile");
+
+        if (!userToken || !mobileNumber) {
+          alert("Please log in first.");
+          window.location.href = "login.html";
+          return;
+        }
+
+        // Fetch User Details
+        fetch(
+          `http://localhost:9090/api/user/me?mobileNumber=${mobileNumber}`,
+          {
+            headers: { Authorization: `Bearer ${userToken}` },
+          }
+        )
+          .then((response) => response.json())
+          .then((user) => {
+            document.getElementById("name").value = user.userName;
+            document.getElementById("mobile").value = user.mobileNumber;
+            document.getElementById("email").value = user.emailId;
+
+            // Fetch Current Plan
+            if (user.plan) {
+              document.getElementById("plan-name").innerText =
+                user.plan.planName;
+              document.getElementById("plan-data").innerText =
+                user.plan.planData;
+              document.getElementById("plan-validity").innerText =
+                user.plan.validityDays + " days";
+              document.getElementById("plan-calls").innerText = "Unlimited";
+              document.getElementById("plan-sms").innerText = "100 SMS/day";
+            } else {
+              console.warn("No active plan found for this user.");
+            }
+
+            // Fetch Recharge History
+            fetch(
+              `http://localhost:9090/api/recharge/history?userId=${user.userId}`,
+              {
+                headers: { Authorization: `Bearer ${userToken}` },
+              }
+            )
+              .then((response) => response.json())
+              .then((history) => {
+                let historyHtml = "";
+                history.forEach((recharge) => {
+                  historyHtml += `
+                        <div class="history-item">
+                            <strong> 📅 Date :</strong> ${new Date(
+                              recharge.rechargeDate
+                            ).toLocaleDateString()}<br>
+                            <strong> 🪙 Plan :</strong> ${
+                              recharge.plan.planName
+                            }<br>
+                            <strong>  💸 Amount :</strong> ₹${
+                              recharge.amountPaid
+                            }<br>
+                            <strong> 💳 Payment Method :</strong> ${
+                              recharge.paymentMethod
+                            }
+                        </div>
+                    `;
+                });
+                document.getElementById("recharge-history").innerHTML =
+                  historyHtml;
+              });
+          })
+          .catch((error) => console.error("Error fetching user data:", error));
+      });
+    </script>
+  </body>
 </html>

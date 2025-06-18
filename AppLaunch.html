@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Launching Soon - Mobi-Comm</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Root variables for colors */
+      :root {
+        --background-color: #f0f2f5; /* Subtle light gray background */
+        --primary-text-color: #1a3c34; /* Deep teal for professionalism */
+        --highlight-color: #ff6f61; /* Coral for a modern, attractive accent */
+        --secondary-text-color: #4a4e69; /* Muted navy for contrast */
+      }
+
+      /* Reset and base styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(
+          135deg,
+          var(--background-color),
+          #85a2c9
+        ); /* Subtle gradient */
+        font-family: "Roboto", sans-serif;
+        overflow: hidden;
+      }
+
+      /* Container for the content */
+      .container {
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Launching Soon text */
+      .launching-soon {
+        font-size: 2.5rem;
+        color: var(--primary-text-color);
+        margin-bottom: 20px;
+        opacity: 0;
+        animation: fadeIn 1.5s ease-in-out forwards;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* MOBI-COMM text with letter-by-letter animation */
+      .mobi-comm {
+        font-family: "Orbitron", sans-serif;
+        font-size: 4.5rem;
+        font-weight: 700;
+        color: transparent;
+        display: inline-block;
+      }
+
+      .mobi-comm span {
+        display: inline-block;
+        color: var(--secondary-text-color);
+        opacity: 0;
+        animation: letterReveal 0.3s ease forwards;
+        text-shadow: 0 0 5px rgba(74, 78, 105, 0.3); /* Subtle shadow for depth */
+      }
+
+      /* Letter-by-letter animation with delay */
+      .mobi-comm span:nth-child(1) {
+        animation-delay: 0.5s;
+      }
+      .mobi-comm span:nth-child(2) {
+        animation-delay: 0.6s;
+      }
+      .mobi-comm span:nth-child(3) {
+        animation-delay: 0.7s;
+      }
+      .mobi-comm span:nth-child(4) {
+        animation-delay: 0.8s;
+      }
+      .mobi-comm span:nth-child(5) {
+        animation-delay: 0.9s;
+      }
+      .mobi-comm span:nth-child(6) {
+        animation-delay: 1s;
+      }
+      .mobi-comm span:nth-child(7) {
+        animation-delay: 1.1s;
+      }
+      .mobi-comm span:nth-child(8) {
+        animation-delay: 1.2s;
+      }
+
+      @keyframes letterReveal {
+        0% {
+          opacity: 0;
+          transform: translateY(20px) rotate(-10deg);
+          color: var(--secondary-text-color);
+        }
+        50% {
+          opacity: 1;
+          transform: translateY(0) rotate(0deg);
+          color: var(--highlight-color); /* Transition to highlight color */
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) rotate(0deg);
+          color: var(--secondary-text-color); /* Back to final color */
+        }
+      }
+
+      /* "By" text */
+      .by-text {
+        font-size: 1.2rem;
+        color: var(--primary-text-color);
+        margin-top: 10px;
+        opacity: 0;
+        animation: fadeIn 1.5s ease-in-out forwards;
+        animation-delay: 1.5s; /* Appears after MOBI-COMM */
+      }
+
+      /* Background subtle animation */
+      .background-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        animation: pulse 10s infinite ease-in-out;
+        z-index: 0;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          opacity: 0.3;
+        }
+        50% {
+          transform: scale(1.05);
+          opacity: 0.5;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0.3;
+        }
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .launching-soon {
+          font-size: 1.8rem;
+        }
+        .mobi-comm {
+          font-size: 3rem;
+        }
+        .by-text {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-overlay"></div>
+    <div class="container">
+      <div class="launching-soon">Launching Soon...</div>
+      <div class="mobi-comm">
+        <span>M</span><span>O</span><span>B</span><span>I</span><span>-</span
+        ><span>C</span><span>O</span><span>M</span><span>M</span>
+      </div>
+      <div class="by-text">Magic is in the making</div>
+      <div class="by-text">They are about to become real !</div>
+    </div>
+  </body>
+</html>

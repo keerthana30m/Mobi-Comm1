@@ -1,473 +1,363 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recharge Analytics</title>
-  <link rel="stylesheet" href="css/main.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/flot"></script>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      display: flex;
-      background-color: #f8f9fa;
-      margin: 0;
-      font-family: 'Cabin', sans-serif;
-    }
-  
-    .sidebar {
-      width: 250px;
-      background: linear-gradient(135deg, #5C8374, #8AA7A2);
-      color: #fff;
-      height: 100vh;
-      padding-top: 20px;
-      position: fixed;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-      transition: background 0.3s ease;
-    }
-    .sidebar h4 {
-      color: #fff;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .sidebar a {
-      padding: 15px 20px;
-      text-decoration: none;
-      display: block;
-      color: #fff;
-      font-size: 1rem;
-      transition: background 0.3s ease, padding-left 0.3s ease;
-    }
-    .sidebar a:hover {
-      background: rgba(255, 255, 255, 0.2);
-      padding-left: 25px;
-    }
-   
-    .content {
-      margin-left: 250px;
-      padding: 20px;
-      width: 100%;
-    }
-  
-    .navbar {
-      background-color: #ffffff;
-      box-shadow: 0 4px 5px rgba(243, 15, 15, 0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      border-bottom: 2px solid #5C8374;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    .navbar-brand {
-      font-family: 'Cabin', sans-serif;
-      font-size: 1.75rem;
-      color: black;
-      font-weight: 700;
-    }
-    .navbar .search-input {
-      width: 300px;
-      margin-right: 20px;
-    }
-    .navbar .dropdown .btn {
-      border: none;
-      font-size: 1rem;
-      background-color: #5C8374;
-      color: #fff;
-      border-radius: 30px;
-      padding: 8px 15px;
-      transition: background-color 0.3s ease;
-    }
-    .navbar .dropdown .btn:hover {
-      background-color: #49736a;
-    }
-    .dropdown-menu {
-      min-width: 150px;
-    }
-
-    /* Dashboard Cards */
-    .dashboard-cards {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 20px;
-      flex-wrap: wrap;
-    }
-    .card {
-      padding: 30px;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: white;
-      border-radius: 9px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      text-align: center;
-      width: 25%;
-      margin-bottom: 20px;
-    }
-  
-    .chart-container {
-      width: 80%;
-      margin-top: 30px;
-    }
-
-    .progress-container {
-      margin-top: 20px;
-    }
-    
-    /* New CSS for chart alignment */
-    .chart-container canvas {
-      display: block;
-      margin: 0 auto;
-    }
-    .chart-container {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .card {
-      box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
-    }
-
-    .width-90 {
-      width: 90px!important;
-    }
-    .rounded-3 {
-      border-radius: 0.5rem !important;
-    }
-
-    a {
-      text-decoration: none;    
-    }
-  </style>
-</head>
-<body>
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <h4 class="text-center mt-5"><u>Power Panel</u></h4>
-    <a href="AdminDashboard.html" onclick="showPage('subscribers')"><i class="fas fa-users"></i> Subscribers List</a>
-    <a href="Adminplan.html" onclick="showPage('planManagement')"><i class="fas fa-tasks"></i> Plan Management</a>
-    <a href="AdminAnalytics.html" onclick="showPage('rechargeAnalytics')"><i class="fas fa-chart-bar"></i> Recharge Analytics</a>
-  </div>
-  <!-- Content -->
-  <div class="content">
-    <nav class="navbar navbar-light">
-      <span class="navbar-brand mb-0 h1">Mobi-Comm</span>
-      <div class="d-flex align-items-center">
-        <div class="dropdown">
-          <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fas fa-user-circle"></i> Admin
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="AdminAccount.html">My Account</a></li>
-            <li><a class="dropdown-item" href="AdminLogin.html">Log Out</a></li>
-          </ul>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transactions</title>
+    <link rel="stylesheet" href="css/main.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Cabin", sans-serif;
+        background-color: #f8f9fa;
+      }
+      .sidebar {
+        width: 230px;
+        background: linear-gradient(135deg, #4b49ac, #98bdff);
+        color: #fff;
+        height: 100vh;
+        padding-top: 20px;
+        position: fixed;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      }
+      .sidebar h4 {
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .sidebar a {
+        padding: 15px 20px;
+        text-decoration: none;
+        display: block;
+        color: #fff;
+        font-size: 1rem;
+        transition: background 0.3s ease, padding-left 0.3s ease;
+      }
+      .sidebar a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        padding-left: 25px;
+      }
+      .content {
+        margin-left: 230px;
+        padding: 20px;
+      }
+      .header {
+        background-color: #fff;
+        border-bottom: 2px solid #4b49ac;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+      .header .header-right {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .header .header-right button {
+        border: none;
+        background: none;
+        font-size: 1.2rem;
+        color: #4b49ac;
+      }
+      /* Chart Section */
+      .chart-container {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .chart-container h4 {
+        color: #4b49ac;
+        font-weight: 700;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      /* Transactions Table */
+      .transactions-table-container {
+        margin-top: 20px;
+        padding-bottom: 40px;
+      }
+      .transactions-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+        border: 2px solid #9e9bd3;
+        table-layout: fixed;
+      }
+      .transactions-table th,
+      .transactions-table td {
+        padding: 8px 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        word-wrap: break-word;
+        vertical-align: middle;
+        font-size: 0.9rem;
+      }
+      .transactions-table th {
+        background-color: #4b49ac;
+        color: #fff;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .transactions-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+      .transactions-table tr:hover {
+        background-color: #f1f1f1;
+      }
+      .transactions-table th:nth-child(1),
+      .transactions-table td:nth-child(1) {
+        width: 150px; /* Transaction ID */
+      }
+      .transactions-table th:nth-child(2),
+      .transactions-table td:nth-child(2) {
+        width: 100px; /* User ID */
+      }
+      .transactions-table th:nth-child(3),
+      .transactions-table td:nth-child(3) {
+        width: 150px; /* User Name */
+      }
+      .transactions-table th:nth-child(4),
+      .transactions-table td:nth-child(4) {
+        width: 100px; /* Amount */
+      }
+      .transactions-table th:nth-child(5),
+      .transactions-table td:nth-child(5) {
+        width: 120px; /* Payment Method */
+      }
+      .transactions-table th:nth-child(6),
+      .transactions-table td:nth-child(6) {
+        width: 180px; /* Date */
+      }
+      .transactions-table th:nth-child(7),
+      .transactions-table td:nth-child(7) {
+        width: 100px; /* Status */
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <div class="sidebar">
+      <h4><u>Power Panel</u></h4>
+      <a href="AdminDashboard.html" onclick="showPage('subscribers')"
+        ><i class="fas fa-users"></i> Subscribers List</a
+      >
+      <a href="adminplan.html" onclick="showPage('planManagement')"
+        ><i class="fas fa-tasks"></i> Plan Management</a
+      >
+      <a href="AdminAnalytics.html" onclick="showPage('transactions')"
+        ><i class="fas fa-chart-bar"></i> Transactions</a
+      >
+    </div>
+    <div class="content">
+      <div class="header">
+        <div class="header-right">
+          <button class="btn"><i class="fas fa-bell"></i></button>
+          <div class="dropdown">
+            <button
+              class="btn dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="fas fa-user-circle"></i> Admin
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item" href="AdminAccount.html">My Account</a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="AdminLogin.html"
+                  onclick="logout()"
+                  >Log Out</a
+                >
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </nav>
-    <div id="rechargeAnalytics" class="page">
-      <h2><i class="fas fa-chart-bar mt-4 mb-4 text-primary"></i> <span class="text-primary"> Recharge Analytics</span></h2>
-      <div class="dashboard-cards">
-        <div class="card">
-          <h4>Total Customers</h4>
-          <p class="bg-dark rounded-4">500</p>
-        </div>
-        <div class="card">
-          <h4>Plans Available</h4>
-          <p class="bg-dark rounded-4">20</p>
-        </div>
-        <div class="card">
-          <h4>Transaction Reports</h4>
-          <p class="bg-dark rounded-4">15,000 Transactions</p>
-        </div>
-      </div>
-      <br>
 
-      <br>
-      <!-- Combined Monthly Growth and Transaction Charts -->
-      <div class="row">
-        <div class="col-md-6">
-          <h4 class="text-center text-decoration-underline">Monthly Growth</h4>
-          <div class="chart-container">
-            <canvas id="rechargeChart" height="300" width="500"></canvas>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <h4 class="text-center text-decoration-underline">Transaction</h4>
-          <div class="chart-container" style="width:600px; margin:auto;">
-            <canvas id="paymentMethodChart" width="400px" ></canvas>
-          </div>
-        </div>
+      <!-- Chart Section -->
+      <div class="chart-container">
+        <h4><i class="fas fa-chart-bar"></i> Transaction Summary</h4>
+        <canvas id="transactionChart"></canvas>
       </div>
 
-     
-      <!-- Modified Flot Chart Container with Title and Reduced Size -->
-      <div class="chart-container" id="flotChart" style="max-width:400px; margin:auto; height:300px;">
-      </div>
-
-      <!-- Recharge Plan Trends Chart -->
-      <div class="container w-75 ">
-        <h3 class="text-center">Recharge Plan Trends</h3>
-        <canvas id="planTrendsChart"></canvas>
-      </div>
-
-      <br><br>
-      <!-- Overall Transactions -->
-      <h4 class="text-center text-decoration-underline">Overall Transaction</h4>
-      <div class="container">
-        <div class="row mt-5">
-          <div class="col-lg-6 d-flex">
-            <div class="card mb-3 card-body">
-              <div class="row align-items-center">
-                <div class="col-auto">
-                  <a href="#!.html">
-                    <img src="https://www.bootdey.com/image/280x280/FF00FF/000000" class="width-90 rounded-3" alt="">
-                  </a>
-                </div>
-                <div class="col">
-                  <div class="overflow-hidden flex-nowrap">
-                    <h6 class="mb-1">
-                      <a href="#!" class="text-reset">Total Recharges Processed</a>
-                    </h6>
-                    <span class="text-muted d-block mb-2 small">
-                      Updated 1 Hour Ago
-                    </span>
-                    <div class="row align-items-center">
-                      <div class="col-auto">
-                        <small class="me-2">85%</small>
-                      </div>
-                      <div class="col">
-                        <div class="progress bg-tint-success" style="height: 4px;">
-                          <div class="progress-bar bg-success" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-lg-6 d-flex">
-            <div class="card mb-3 card-body">
-              <div class="row align-items-center">
-                <div class="col-auto">
-                  <a href="#!.html">
-                    <img src="https://www.bootdey.com/image/280x280/6495ED/000000" class="width-90 rounded-3" alt="">
-                  </a>
-                </div>
-                <div class="col">
-                  <div class="overflow-hidden flex-nowrap">
-                    <h6 class="mb-1">
-                      <a href="#!" class="text-reset">Success Rate of Transactions</a>
-                    </h6>
-                    <span class="text-muted d-block mb-2 small">
-                      Updated 3 Hours Ago
-                    </span>
-                    <div class="row align-items-center">
-                      <div class="col-auto">
-                        <small class="me-2">92%</small>
-                      </div>
-                      <div class="col">
-                        <div class="progress bg-tint-success" style="height: 4px;">
-                          <div class="progress-bar bg-success" role="progressbar" style="width: 92%;" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-lg-6 d-flex">
-            <div class="card mb-3 card-body">
-              <div class="row align-items-center">
-                <div class="col-auto">
-                  <a href="#!.html">
-                    <img src="https://www.bootdey.com/image/280x280/00FFFF/000000" class="width-90 rounded-3" alt="">
-                  </a>
-                </div>
-                <div class="col">
-                  <div class="overflow-hidden flex-nowrap">
-                    <h6 class="mb-1">
-                      <a href="#!" class="text-reset">Pending Transactions</a>
-                    </h6>
-                    <span class="text-muted d-block mb-2 small">
-                      Updated 30 Minutes Ago
-                    </span>
-                    <div class="row align-items-center">
-                      <div class="col-auto">
-                        <small class="me-2">18%</small>
-                      </div>
-                      <div class="col">
-                        <div class="progress bg-tint-warning" style="height: 4px;">
-                          <div class="progress-bar bg-warning" role="progressbar" style="width: 18%;" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-lg-6 d-flex">
-            <div class="card mb-3 card-body">
-              <div class="row align-items-center">
-                <div class="col-auto">
-                  <a href="#!.html">
-                    <img src="https://www.bootdey.com/image/280x280/FFB6C1/000000" class="width-90 rounded-3" alt="">
-                  </a>
-                </div>
-                <div class="col">
-                  <div class="overflow-hidden flex-nowrap">
-                    <h6 class="mb-1">
-                      <a href="#!" class="text-reset">Failed Transactions</a>
-                    </h6>
-                    <span class="text-muted d-block mb-2 small">
-                      Updated 4 Hours Ago
-                    </span>
-                    <div class="row align-items-center">
-                      <div class="col-auto">
-                        <small class="me-2">8%</small>
-                      </div>
-                      <div class="col">
-                        <div class="progress bg-tint-danger" style="height: 4px;">
-                          <div class="progress-bar bg-danger" role="progressbar" style="width: 8%;" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <!-- Transactions Table -->
+      <div class="transactions-table-container">
+        <table class="transactions-table">
+          <thead>
+            <tr>
+              <th>Transaction ID</th>
+              <th>User ID</th>
+              <th>User Name</th>
+              <th>Amount</th>
+              <th>Payment Method</th>
+              <th>Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="transactionsTableBody"></tbody>
+        </table>
       </div>
     </div>
-    <br>
 
-  <script>
-    // Monthly Growth Bar Chart
-    var ctx = document.getElementById('rechargeChart').getContext('2d');
-    var rechargeChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-        datasets: [{
-          label: 'Total Recharges',
-          data: [500, 700, 900, 1200, 1400, 1600],
-          backgroundColor: 'rgba(54, 62, 235, 0.5)'
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true
+    <script>
+      // Helper function to get JWT token from localStorage
+      function getJwtToken() {
+        return localStorage.getItem("jwt");
+      }
+
+      // Function to handle logout
+      function logout() {
+        localStorage.removeItem("jwt");
+        window.location.href = "AdminLogin.html";
+      }
+
+      // Fetch transactions with JWT token
+      async function fetchTransactions() {
+        try {
+          const token = getJwtToken();
+          if (!token) {
+            alert("Unauthorized access. Please log in as admin.");
+            window.location.href = "AdminLogin.html";
+            return;
           }
-        }
-      }
-    });
-    
-    // Payment Method Pie Chart
-    var paymentCtx = document.getElementById('paymentMethodChart').getContext('2d');
-    var paymentMethodChart = new Chart(paymentCtx, {
-      type: 'pie',
-      data: {
-        labels: ['UPI', 'Credit Card', 'Net Banking', 'Wallets', 'Others'],
-        datasets: [{
-          data: [40, 25, 15, 10, 10],
-          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
-        }]
-      }
-    });
-    
-    // Flot Pie Chart
-    $(function() {
-      var data = [
-        { label: "Plan A", data: 40 },
-        { label: "Plan B", data: 30 },
-        { label: "Plan C", data: 20 },
-        { label: "Plan D", data: 10 }
-      ];
-      $.plot("#flotChart", data, {
-        series: { pie: { show: true } },
-        legend: { show: false }
-      });
-    });
-  </script>
-  <script>
-    // Recharge Plan Trends Line Chart
-    const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    
-    const data = {
-      labels: labels,
-      datasets: [
-        {
-          label: "Validity Plan",
-          data: [30, 40, 50, 60, 55, 70, 80, 85, 90, 95, 100, 110],
-          borderColor: "blue",
-          backgroundColor: "rgba(0, 0, 255, 0.2)",
-          tension: 0.3
-        },
-        {
-          label: "Popular Plan",
-          data: [50, 60, 70, 80, 75, 85, 90, 95, 105, 110, 120, 130],
-          borderColor: "green",
-          backgroundColor: "rgba(0, 255, 0, 0.2)",
-          tension: 0.3
-        },
-        {
-          label: "Unlimited Plan",
-          data: [20, 30, 40, 45, 50, 55, 60, 65, 70, 75, 80, 90],
-          borderColor: "red",
-          backgroundColor: "rgba(255, 0, 0, 0.2)",
-          tension: 0.3
-        },
-        {
-          label: "Data Plan",
-          data: [10, 20, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75],
-          borderColor: "orange",
-          backgroundColor: "rgba(255, 165, 0, 0.2)",
-          tension: 0.3
-        },
-        {
-          label: "Entertainment Plan",
-          data: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
-          borderColor: "purple",
-          backgroundColor: "rgba(128, 0, 128, 0.2)",
-          tension: 0.3
-        },
-        {
-          label: "Annual Plan",
-          data: [15, 25, 35, 45, 50, 60, 70, 80, 90, 100, 110, 120],
-          borderColor: "brown",
-          backgroundColor: "rgba(165, 42, 42, 0.2)",
-          tension: 0.3
-        }
-      ]
-    };
-    
-    const config = {
-      type: "line",
-      data: data,
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: "top"
+          const response = await fetch("http://localhost:9090/api/transactions/all", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          if (!response.ok) {
+            if (response.status === 403 || response.status === 401) {
+              alert("Unauthorized access. Please log in as admin.");
+              window.location.href = "AdminLogin.html";
+              return;
+            }
+            throw new Error("Network response was not ok");
           }
+          const transactions = await response.json();
+          populateTransactionsTable(transactions);
+          renderTransactionChart(transactions);
+        } catch (error) {
+          console.error("Error fetching transactions:", error);
+          alert("Failed to fetch transactions. Please try again later.");
         }
       }
-    };
-    
-    const myChart = new Chart(document.getElementById("planTrendsChart"), config);
-  </script>
-</body>
+
+      // Populate the transactions table
+      function populateTransactionsTable(transactions) {
+        const tableBody = document.getElementById("transactionsTableBody");
+        tableBody.innerHTML = "";
+
+        transactions.forEach((transaction) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${transaction.transactionId}</td>
+            <td>${transaction.user.userId}</td>
+            <td>${transaction.user.userName}</td>
+            <td>₹${transaction.amount.toFixed(2)}</td>
+            <td>${transaction.paymentMethod}</td>
+            <td>${new Date(transaction.transactionDate).toLocaleString()}</td>
+            <td>${transaction.status}</td>
+          `;
+          tableBody.appendChild(row);
+        });
+      }
+
+      // Render a bar chart for transactions by payment method
+      function renderTransactionChart(transactions) {
+        const paymentMethods = {};
+        transactions.forEach((t) => {
+          paymentMethods[t.paymentMethod] = (paymentMethods[t.paymentMethod] || 0) + t.amount;
+        });
+
+        const labels = Object.keys(paymentMethods);
+        const data = Object.values(paymentMethods);
+
+        const ctx = document.getElementById("transactionChart").getContext("2d");
+        new Chart(ctx, {
+          type: "bar", // Use "pie" for a pie chart
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: "Total Amount (₹)",
+                data: data,
+                backgroundColor: [
+                  "rgba(75, 73, 172, 0.8)", // #4b49ac
+                  "rgba(152, 189, 255, 0.8)", // #98bdff
+                  "rgba(255, 183, 77, 0.8)", // #FFB74D
+                  "rgba(245, 124, 0, 0.8)", // #F57C00
+                ],
+                borderColor: [
+                  "rgba(75, 73, 172, 1)",
+                  "rgba(152, 189, 255, 1)",
+                  "rgba(255, 183, 77, 1)",
+                  "rgba(245, 124, 0, 1)",
+                ],
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: "Amount (₹)",
+                },
+              },
+              x: {
+                title: {
+                  display: true,
+                  text: "Payment Method",
+                },
+              },
+            },
+            plugins: {
+              legend: {
+                display: false, // Hide legend for bar chart
+              },
+            },
+          },
+        });
+      }
+
+      // Load transactions on page load
+      document.addEventListener("DOMContentLoaded", fetchTransactions);
+
+      function showPage(page) {
+        console.log("Switching to page: " + page);
+      }
+    </script>
+  </body>
 </html>
